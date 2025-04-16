@@ -1,9 +1,9 @@
 <nav class="Navigation">
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#top-up">Top-up</a></li>
-    <li><a href="#xs-refer">XS Refer</a></li>
-    <li><a href="#xs-affiliates">XS Affiliates</a></li>
-    <li><a href="#help">Help</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#shop">Shop</a></li>
+    <li><a href="#offers">Offers</a></li>
+    <li><a href="#help">Help Center</a></li>
   </ul>
 </nav>
