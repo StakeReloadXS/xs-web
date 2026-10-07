@@ -1,0 +1,11 @@
+{
+  "currency": "USD",
+  "products": [
+    {"id": "new-xsid", "name": "New XSID Setup", "description": "New XSID setup with 5,000 XSID Credits.", "price": 5.00, "image": "/assets/img/coins.svg", "availability": "in-stock", "instructions": "Include your Telegram username so we can deliver your XSID."},
+    {"id": "xs-credits-50k", "name": "50,000 XS Credits", "description": "5% additional boost on your deposit.", "price": 50.00, "image": "/assets/img/coins.svg", "availability": "in-stock", "instructions": "Credits are delivered to your XSID after payment is confirmed."},
+    {"id": "xs-credits-100k", "name": "100,000 XS Credits", "description": "10% additional boost on your deposit.", "price": 100.00, "image": "/assets/img/coins.svg", "availability": "in-stock", "instructions": "Credits are delivered to your XSID after payment is confirmed."},
+    {"id": "xs-credits-200k", "name": "200,000 XS Credits", "description": "15% additional boost on your deposit.", "price": 200.00, "image": "/assets/img/coins.svg", "availability": "in-stock", "instructions": "Credits are delivered to your XSID after payment is confirmed."},
+    {"id": "xs-credits-1m", "name": "1,000,000 XS Credits", "description": "20% additional boost on your deposit.", "price": 1000.00, "image": "/assets/img/coins.svg", "availability": "in-stock", "instructions": "Credits are delivered to your XSID after payment is confirmed."},
+    {"id": "kyc-level-2", "name": "KYC Level 2", "description": "KYC account to Level 2.", "price": 75.00, "image": "/assets/img/stake.svg", "availability": "in-stock", "instructions": "We will contact you on Telegram to complete verification."}
+  ]
+}
