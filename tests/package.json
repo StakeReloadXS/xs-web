@@ -3,7 +3,7 @@
   "private": true,
   "description": "Layout tests. Kept separate so the site root has no dependencies.",
   "scripts": {
-    "test": "node --test layout.test.js"
+    "test": "node --test"
   },
   "devDependencies": {
     "playwright": "^1.50.0"
