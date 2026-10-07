@@ -21,3 +21,14 @@ Set `CHROMIUM_PATH` to use an existing Chromium binary.
 ## Design system
 
 `assets/css/site.css` is the single stylesheet (tokens in `:root`); `assets/js/layout.js` renders the shared header and footer on every page.
+
+## Order intake (Cloudflare Pages Function + D1)
+
+`functions/api/order.js` serves `POST /api/order`: it validates the order, recomputes prices from `data/products.json`, stores it in the D1 database `xs-orders` (table `orders`), and optionally notifies Telegram.
+
+One-time setup in the Cloudflare dashboard (Workers & Pages → `xs-web` → Settings):
+1. **Bindings → Add → D1 database**: variable name `DB`, database `xs-orders`. Redeploy.
+2. Optional: **Variables and Secrets** → add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as secrets (use a *new* bot token).
+3. Set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit.
+
+Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` (D1 console or `wrangler d1 execute xs-orders`).
