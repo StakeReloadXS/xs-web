@@ -1,0 +1,10 @@
+{
+  "name": "xs-web",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static StakeReloadXS storefront. No build step; files are served as-is.",
+  "scripts": {
+    "start": "echo \"Static site: nothing to build or start\"",
+    "build": "echo \"Static site: nothing to build\""
+  }
+}
