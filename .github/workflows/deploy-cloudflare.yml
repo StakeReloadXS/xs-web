@@ -15,16 +15,15 @@ jobs:
       - name: Install Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
 
       - name: Install Wrangler
         run: npm install -g wrangler
 
       - name: Deploy to Cloudflare Pages
         env:
-          CLOUDFLARE_API_TOKEN: ${{ secrets.STAKERELOADXS_CF_TOKEN }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          # Deploy using wrangler with Cloudflare token
           wrangler pages deploy . \
             --project-name=stakereloadxs-web \
-            --compatibility-date=2024-01-01
+            --branch=main
