@@ -1,87 +1,51 @@
 <!doctype html>
-<html>
-
+<html lang="en">
 <head>
-  <title>Your Order - StakeReloadXS</title> 
-  <meta name="ccpayment-site-verification" content="0139266877771d61f301725cd29cdb86"/> 
-  <meta author="https://github.com/jlucus">
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- google font -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Your Order - StakeReloadXS</title>
+  <meta name="description" content="Review your StakeReloadXS order and submit your details.">
+  <meta name="theme-color" content="#000000">
+  <link rel="canonical" href="https://stakereloadxs.com/order.html">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Your Order - StakeReloadXS">
+  <meta property="og:description" content="Review your StakeReloadXS order and submit your details.">
+  <meta property="og:url" content="https://stakereloadxs.com/order.html">
+  <meta property="og:image" content="https://stakereloadxs.com/assets/img/og-image.png">
+  <link rel="icon" href="/assets/img/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="/assets/img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-    rel="stylesheet">
-
-  <style>
-    body {
-      font-family: Poppins, sans-serif;
-    }
-  </style>
-  <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-  var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-  (function(){
-  var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-  s1.async=true;
-  s1.src='https://embed.tawk.to/68013ff53e654c19146b2db9/1ip2e3m7d';
-  s1.charset='UTF-8';
-  s1.setAttribute('crossorigin','*');
-  s0.parentNode.insertBefore(s1,s0);
-  })();
-  </script>
-  <!--End of Tawk.to Script-->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="/assets/css/site.css">
   <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/layout.js" defer></script>
   <script src="/assets/js/app.js" defer></script>
 </head>
-<body class="bg-black text-gray-100 text-[15px]">
-  <nav class="fixed top-0 left-0 w-full py-4 px-4 sm:px-10 z-50 min-h-[20px] bg-black bg-opacity-5 text-white">
-    <div class="flex items-center justify-between">
-      <!-- Logo Section -->
-      <a href="/index.html">
-        <img src="/assets/img/og-image.png" alt="Logo" class="w-40" />
-      </a>
-        <!-- Mobile Menu Toggle Button -->
-    <button id="toggleOpen" class="lg:hidden">
-      <svg class="w-7 h-7" fill="#fff" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-        <path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path>
-      </svg>
-    </button>
-    <!-- Navigation Links -->
-    <ul class="hidden lg:flex gap-x-10">
-      <li><a href="/index.html" class="hover:text-red-600">Home</a></li>
-      <li><a href="/team.html" class="hover:text-red-600">Team</a></li>
-      <li><a href="/products.html" class="hover:text-red-600">Shop</a></li>
-      <li><a href="/offers.html" class="hover:text-red-600">Signup Offers</a></li>
-      <li><a href="/support.html" class="hover:text-red-600">Support</a></li>
-      <li><a href="/order.html" class="hover:text-red-600">Order (<span data-cart-count>0</span>)</a></li>
-    </ul>
-</nav>
-  
-  <main id="order-root" class="max-w-2xl mx-auto px-4 sm:px-10 pt-32">
-    <h1 class="text-4xl font-semibold mb-8">Your Order</h1>
-    <div data-lines></div>
-    <div class="flex justify-between text-xl py-4"><span>Total</span><span data-total>$0.00</span></div>
-    <form class="space-y-4 bg-[#111] p-6 rounded-xl mt-4">
-      <label class="block">Name<input name="name" required class="mt-1 w-full bg-[#222] rounded px-3 py-2 outline-none"></label>
-      <label class="block">Contact method
-        <select name="contactMethod" class="mt-1 w-full bg-[#222] rounded px-3 py-2 outline-none"><option>Telegram</option><option>Email</option></select></label>
-      <label class="block">Username or email<input name="contact" required class="mt-1 w-full bg-[#222] rounded px-3 py-2 outline-none" placeholder="@username or you@example.com"></label>
-      <label class="block">Notes (optional)<textarea name="notes" rows="3" class="mt-1 w-full bg-[#222] rounded px-3 py-2 outline-none"></textarea></label>
-      <button type="submit" class="w-full px-6 py-3.5 rounded-md bg-red-700 hover:bg-red-800 disabled:opacity-40">Submit order</button>
-      <p data-status class="text-sm text-gray-400" role="status"></p>
-    </form>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header data-site-header></header>
+  <main id="main">
+    <section class="section">
+      <div class="container" style="max-width:40rem">
+        <div id="order-root">
+          <h1 style="font-size:clamp(1.75rem,5vw,2.5rem)">Your Order</h1>
+          <div data-lines></div>
+          <div class="total"><span>Total</span><strong data-total>$0.00</strong></div>
+          <form class="panel">
+            <label class="field"><span>Name</span><input class="input" name="name" autocomplete="name" required></label>
+            <label class="field"><span>Contact method</span>
+              <select class="input" name="contactMethod"><option>Telegram</option><option>Email</option></select></label>
+            <label class="field"><span>Username or email</span><input class="input" name="contact" autocomplete="off" required placeholder="@username or you@example.com"></label>
+            <label class="field"><span>Notes (optional)</span><textarea class="input" name="notes" rows="3"></textarea></label>
+            <button class="btn btn-block" type="submit">Submit order</button>
+            <p class="muted" data-status role="status" style="margin:1rem 0 0"></p>
+          </form>
+        </div>
+      </div>
+    </section>
   </main>
-
-  <footer class="bg-[#111] px-4 sm:px-10 py-6 mt-24">
-    <div class="text-center text-gray-400">
-      <a href="/support.html" class="hover:text-red-600">Support</a> ·
-      <a href="https://t.me/supitsj" class="hover:text-red-600">Telegram</a>
-      <h4 class="text-lg mt-2">2025 © All Rights Reserved | StakeReloadXS</h4>
-    </div>
-  </footer>
+  <footer data-site-footer></footer>
 </body>
 </html>
