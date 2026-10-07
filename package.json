@@ -5,6 +5,10 @@
   "description": "Static StakeReloadXS storefront. No build step; files are served as-is.",
   "scripts": {
     "start": "echo \"Static site: nothing to build or start\"",
-    "build": "echo \"Static site: nothing to build\""
+    "build": "echo \"Static site: nothing to build\"",
+    "generate-og": "node scripts/generate-og-images.js"
+  },
+  "devDependencies": {
+    "sharp": "^0.33.0"
   }
 }
