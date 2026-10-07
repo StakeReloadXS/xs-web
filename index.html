@@ -9,7 +9,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="blob:https://stakereload.com/c466fc87-aa92-4a21-ae37-af147b148b5a"></script>
   <!--Start of Tawk.to Script-->
   <script type="text/javascript">
   var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
@@ -23,7 +22,6 @@
   })();
   </script>
   <!--End of Tawk.to Script-->
-  <link id="nordvpn-contentScript-extension-fonts" rel="stylesheet" href="//fonts.googleapis.com/css?family=Lato">
 
   <!-- google font -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -1301,6 +1299,8 @@
       font-style: normal;
     }
   </style>
+  <script src="/assets/js/config.js"></script>
+  <script src="/assets/js/app.js" defer></script>
 </head>
 
 <body class="bg-black text-gray-100 text-[15px]">
@@ -1308,7 +1308,7 @@
     <div class="flex items-center justify-between">
       <!-- Logo Section -->
       <a href="/index.html">
-        <img src="/src/images/og-image.png" alt="Logo" class="w-40">
+        <img src="/assets/img/og-image.png" alt="Logo" class="w-40">
       </a>
       <!-- Mobile Menu Toggle Button -->
       <button id="toggleOpen" class="lg:hidden">
@@ -1321,10 +1321,11 @@
       <!-- Navigation Links -->
       <ul class="hidden lg:flex gap-x-10">
         <li><a href="/index.html" class="hover:text-red-600">Home</a></li>
-        <li><a href="/src/pages/team.html" class="hover:text-red-600">Team</a></li>
-        <li><a href="/src/pages/shop.html" class="hover:text-red-600">Shop</a></li>
-        <li><a href="/src/pages/offers.html" class="hover:text-red-600">Signup Offers</a></li>
-        <li><a href="/src/pages/help.html" class="hover:text-red-600">Help Center</a></li>
+        <li><a href="/team.html" class="hover:text-red-600">Team</a></li>
+        <li><a href="/products.html" class="hover:text-red-600">Shop</a></li>
+        <li><a href="/offers.html" class="hover:text-red-600">Signup Offers</a></li>
+        <li><a href="/support.html" class="hover:text-red-600">Support</a></li>
+      <li><a href="/order.html" class="hover:text-red-600">Order (<span data-cart-count>0</span>)</a></li>
       </ul>
       <!-- Search Bar -->
       <div class="hidden lg:flex items-center bg-transparent px-6 py-2.5 rounded border border-white">
@@ -1340,7 +1341,7 @@
   </nav>
   <div
     class="relative w-full h-screen flex items-center justify-center before:absolute before:inset-0 before:w-full before:h-full before:bg-black before:opacity-60"
-    style="background-image: url('src/images/page-logo.svg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+    style="background-image: url('/assets/img/page-logo.svg'); background-size: cover; background-position: center; background-repeat: no-repeat;">
 
 
     <div class="max-w-5xl mx-auto text-center relative px-4 sm:px-10 mt-16">
@@ -1369,7 +1370,7 @@
         </button>
         <button type="button"
           class="px-6 py-3.5 rounded-md text-gray-100 bg-red-700 hover:bg-red-800 transition-all mt-10">
-          <a href="src/pages/shop.html">Top Up</a>
+          <a href="/products.html">Top Up</a>
         </button>
       </div>
     </div>
@@ -1669,7 +1670,7 @@
               </div>
               <hr class="my-6">
               <div class="flex flex-wrap items-center gap-3">
-                <img src="/src/images/supitsj.png" class="w-9 h-9 rounded-full">
+                <img src="/assets/img/supitsj.png" class="w-9 h-9 rounded-full">
                 <p class="text-xs text-gray-400">BY SupItsJ</p>
               </div>
             </div>
@@ -1688,7 +1689,7 @@
               </div>
               <hr class="my-6">
               <div class="flex flex-wrap items-center gap-3">
-                <img src="src/images/supitsj.png" class="w-9 h-9 rounded-full">
+                <img src="/assets/img/supitsj.png" class="w-9 h-9 rounded-full">
                 <p class="text-xs text-gray-400">BY SupItsJ</p>
               </div>
             </div>
@@ -1707,7 +1708,7 @@
               </div>
               <hr class="my-6">
               <div class="flex flex-wrap items-center gap-3">
-                <img src="src/images/supitsj.png" class="w-9 h-9 rounded-full">
+                <img src="/assets/img/supitsj.png" class="w-9 h-9 rounded-full">
                 <p class="text-xs text-gray-400">BY SupItsJ</p>
               </div>
             </div>
