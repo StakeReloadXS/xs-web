@@ -1,0 +1,8 @@
+# Social preview assets: explicit image headers and permissive crawler access.
+/assets/og/*
+  Cache-Control: public, max-age=86400, stale-while-revalidate=604800
+  X-Content-Type-Options: nosniff
+  Access-Control-Allow-Origin: *
+
+/*
+  X-Robots-Tag: all
