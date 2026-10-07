@@ -23,6 +23,7 @@ jobs:
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: 6ce23660446a1e9a065484b1dbfe24ba
         run: |
           wrangler pages deploy . \
             --project-name=stakereloadxs-web \
