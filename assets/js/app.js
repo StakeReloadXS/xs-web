@@ -16,6 +16,7 @@
     var c = loadCart();
     return Object.keys(c).reduce(function (a, k) { return a + c[k]; }, 0);
   }
+  window.XS_REFRESH_CART = function () { updateBadge(); };
   function updateBadge() {
     document.querySelectorAll("[data-cart-count]").forEach(function (el) { el.textContent = cartCount(); });
   }
@@ -30,14 +31,13 @@
     getProducts().then(function (products) {
       el.innerHTML = products.map(function (p) {
         var ok = p.availability === "in-stock";
-        return '<div class="hover:outline outline-red-600 rounded p-6 transition-all text-left">' +
-          '<img src="' + esc(p.image) + '" alt="" class="w-12 h-12 mb-4">' +
-          '<h4 class="text-xl mb-4">' + esc(p.name) + '</h4>' +
-          '<h3 class="text-4xl">' + money(p.price) + '</h3>' +
-          '<p class="mt-4 text-gray-400">' + esc(p.description) + '</p>' +
-          '<button type="button" data-add="' + esc(p.id) + '"' + (ok ? "" : " disabled") +
-          ' class="w-full px-6 py-3.5 rounded-md text-gray-100 bg-red-700 hover:bg-red-800 disabled:opacity-40 transition-all mt-8">' +
-          (ok ? "Add to order" : "Unavailable") + '</button></div>';
+        return '<article class="card">' +
+          '<img class="icon" src="' + esc(p.image) + '" alt="" width="48" height="48">' +
+          '<h3>' + esc(p.name) + '</h3>' +
+          '<div class="price">' + money(p.price) + '</div>' +
+          '<p class="muted">' + esc(p.description) + '</p>' +
+          '<button type="button" class="btn btn-block" data-add="' + esc(p.id) + '"' + (ok ? "" : " disabled") + '>' +
+          (ok ? "Add to order" : "Unavailable") + '</button></article>';
       }).join("");
       el.addEventListener("click", function (e) {
         var id = e.target.getAttribute && e.target.getAttribute("data-add");
@@ -48,7 +48,7 @@
         e.target.textContent = "Added ✓";
         setTimeout(function () { e.target.textContent = "Add to order"; }, 1200);
       });
-    }).catch(function () { el.innerHTML = '<p class="text-gray-400">Could not load products.</p>'; });
+    }).catch(function () { el.innerHTML = '<p class="muted">Could not load products.</p>'; });
   }
 
   function renderOrder(root) {
@@ -61,7 +61,7 @@
     function draw() {
       var cart = loadCart(), total = 0, ids = Object.keys(cart).filter(function (id) { return byId[id]; });
       if (!ids.length) {
-        list.innerHTML = '<p class="text-gray-400">Your order is empty. <a class="text-red-600 hover:underline" href="/products.html">Browse products</a>.</p>';
+        list.innerHTML = '<p class="muted">Your order is empty. <a class="accent" href="/products.html">Browse products</a>.</p>';
         totalEl.textContent = money(0);
         form.querySelector("[type=submit]").disabled = true;
         return;
@@ -69,10 +69,9 @@
       form.querySelector("[type=submit]").disabled = false;
       list.innerHTML = ids.map(function (id) {
         var p = byId[id], q = cart[id]; total += p.price * q;
-        return '<div class="flex items-center justify-between py-3 border-b border-gray-800"><div><div>' + esc(p.name) +
-          '</div><div class="text-gray-400 text-sm">' + money(p.price) + ' each</div></div>' +
-          '<div class="flex items-center gap-2"><button type="button" data-dec="' + id + '" class="w-8 h-8 rounded bg-[#222]">−</button>' +
-          '<span class="w-6 text-center">' + q + '</span><button type="button" data-inc="' + id + '" class="w-8 h-8 rounded bg-[#222]">+</button></div></div>';
+        return '<div class="line"><div><div>' + esc(p.name) + '</div><div class="muted">' + money(p.price) + ' each</div></div>' +
+          '<div class="qty"><button type="button" data-dec="' + id + '" aria-label="Remove one ' + esc(p.name) + '">\u2212</button>' +
+          '<span aria-live="polite">' + q + '</span><button type="button" data-inc="' + id + '" aria-label="Add one ' + esc(p.name) + '">+</button></div></div>';
       }).join("");
       totalEl.textContent = money(total);
     }
@@ -124,14 +123,14 @@
     if (last && !cfg.orderEndpoint) {
       var a = root.querySelector("[data-telegram]");
       a.href = "https://t.me/" + cfg.telegram;
-      a.classList.remove("hidden");
+      a.removeAttribute("hidden");
       root.querySelector("[data-summary]").textContent = last.summary;
-      root.querySelector("[data-summary-wrap]").classList.remove("hidden");
+      root.querySelector("[data-summary-wrap]").removeAttribute("hidden");
     }
     if (cfg.paymentLink) {
       var p = root.querySelector("[data-pay]");
       p.href = cfg.paymentLink;
-      p.classList.remove("hidden");
+      p.removeAttribute("hidden");
     }
   }
 
