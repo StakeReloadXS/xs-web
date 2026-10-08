@@ -1,12 +1,13 @@
 # StakeReloadXS
 
-Static storefront hosted on GitHub Pages (custom domain via `CNAME`). No server, database, or build step.
+Static storefront hosted on Cloudflare Pages (project `xs-web`, domain `stakereloadxs.com`). The only server-side code is the order-intake Pages Function; there is no build step.
 
 - `data/products.json` – the catalog. Edit price/availability, commit, and Pages redeploys.
 - `assets/js/config.js` – set `orderEndpoint` (hosted form endpoint accepting a JSON POST) and optionally `paymentLink`. With no endpoint, `success.html` shows the order summary with a Telegram handoff.
 - `assets/js/app.js` – catalog rendering, localStorage cart, order submit.
 - Pages: `index`, `products`, `order`, `success`, `support`, `team`, `offers`.
-- Deploy: GitHub Pages from branch (Settings → Pages → Deploy from a branch → `main` / root). The `CNAME` file sets the custom domain.
+- Deploy: pushes to `main` publish to Cloudflare Pages via `.github/workflows/deploy-cloudflare.yml`. See [`docs/runbook.md`](docs/runbook.md) for the deploy, DNS fix and secret names.
+- `CNAME` is a leftover from the GitHub Pages setup and is not used by the Cloudflare deploy.
 
 Preview locally: `python3 -m http.server` and open http://localhost:8000.
 
@@ -31,4 +32,4 @@ One-time setup in the Cloudflare dashboard (Workers & Pages → `xs-web` → Set
 2. Optional: **Variables and Secrets** → add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as secrets (use a *new* bot token).
 3. Set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit.
 
-Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` (D1 console or `wrangler d1 execute xs-orders`).
+Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` (D1 console or `wrangler d1 execute xs-orders`). For how to read and handle orders, see [`docs/operator-guide.md`](docs/operator-guide.md).
