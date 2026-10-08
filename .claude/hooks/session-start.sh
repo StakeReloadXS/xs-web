@@ -27,6 +27,14 @@ fi
 
 echo "wrangler $("$WRANGLER_BIN" --version 2>/dev/null | tail -n 1) installed at $WRANGLER_BIN" >&2
 
+# Install the layout test dependencies so `npm test` in tests/ runs on the first try.
+# Browsers are preinstalled in the container; Playwright is pointed at them, not downloaded.
+REPO_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+if [ -f "$REPO_DIR/tests/package-lock.json" ] && [ ! -d "$REPO_DIR/tests/node_modules" ]; then
+  (cd "$REPO_DIR/tests" && npm ci --no-audit --no-fund --silent) \
+    || echo "Warning: tests/ dependencies failed to install; run 'npm ci' in tests/ manually." >&2
+fi
+
 # Report presence and length only, never values.
 missing=0
 for v in CF_TOKEN CLOUDFLARE_TOKEN CF_ACCOUNT_ID CF_ZONE_ID; do
