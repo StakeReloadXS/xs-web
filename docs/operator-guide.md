@@ -30,15 +30,13 @@ There is **no status column**. The database cannot show whether an order has bee
 
 ## Reading orders
 
-Open the D1 console for `xs-orders`, or run locally with `wrangler d1 execute xs-orders`:
+Use the D1 console in the Cloudflare dashboard, or the CLI with `--remote`. Without `--remote`, `wrangler d1 execute` reads a local development copy, which is empty:
 
-    SELECT reference, created_at, name, contact_method, contact, total, items_json
-    FROM orders
-    ORDER BY created_at DESC;
+    wrangler d1 execute xs-orders --remote --command "SELECT reference, created_at, name, contact_method, contact, total, items_json FROM orders ORDER BY created_at DESC;"
 
 To find one order by the reference a customer gives you:
 
-    SELECT * FROM orders WHERE reference = 'XS-XXXXXX';
+    wrangler d1 execute xs-orders --remote --command "SELECT * FROM orders WHERE reference = 'XS-XXXXXX';"
 
 Use `contact` to reach the customer on their chosen channel. Telegram handles can be shared with a leading `@` or without it, so check both forms.
 
@@ -52,13 +50,18 @@ Use `contact` to reach the customer on their chosen channel. Telegram handles ca
 
 ## Lost reference IDs
 
-The support page asks customers to message Telegram with the contact details they used. Search `contact` for those details, then confirm with the customer before sharing the reference.
+The support page asks customers to message Telegram with the name and contact details they used, and to paste the order summary if they still have it.
+
+While intake is off, the reference is generated in the customer's browser and is not stored on the server. A lost reference can only be matched to a Telegram message that contains the summary. If the customer has neither, there is nothing in the database to find. Say so rather than promising a match. When intake is on, search `contact` for the details, then confirm with the customer before sharing the reference.
 
 ## Test orders
 
-Do not submit test orders against production without agreement. If one is needed, use a reference that is clearly a test (for example `XS-TEST-0001`), and delete it afterwards:
+Do not submit test orders against production without agreement. If one is needed, use a reference that is clearly a test (for example `XS-TEST-0001`, which matches the reference format), then delete it. Always run the SELECT first, check the rows, and only then run the DELETE. Both use `--remote` so they touch production, and the DELETE is pinned to the exact reference:
 
-    DELETE FROM orders WHERE reference = 'XS-TEST-0001';
+    wrangler d1 execute xs-orders --remote --command "SELECT reference, name, total FROM orders WHERE reference = 'XS-TEST-0001';"
+    wrangler d1 execute xs-orders --remote --command "DELETE FROM orders WHERE reference = 'XS-TEST-0001';"
+
+Never delete by pattern, such as `LIKE 'XS-TEST%'`, without first reviewing every matching row.
 
 ## Not covered here (needs owner decisions)
 

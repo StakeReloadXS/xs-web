@@ -23,13 +23,13 @@ No critical, moderate, or minor violations were reported. Each page also has a n
 ### 1. Active nav link and hover colour fail contrast (all pages, desktop)
 
 - Selector: `.site-nav a[aria-current="page"]` and its `:hover` rule, both reading `var(--accent)` in `assets/css/site.css`. Referenced by selector, not line number, so the note stays correct as the file changes.
-- Colour: `--accent: #dc2626` on `--bg: #000`. Contrast is **4.35:1**. WCAG AA needs 4.5:1 for normal text.
+- Colour: `--accent: #dc2626` on `--bg: #000`. Contrast is **4.35:1**, from the WCAG relative-luminance formula on the hex values (4.348 unrounded). axe reports the same pair as a serious failure. WCAG AA needs 4.5:1 for normal text.
 - Proposed fix: change `--accent` to `#ef4444` (contrast **5.58:1**). This is a brand colour decision, so it is left for the owner to approve.
 - Scope of the fix: `--accent` is also used for buttons (`.btn:hover`), input focus outlines, card hover borders, stat numbers and the hero glow. Changing the token therefore changes more than the nav. Before approving, check those states visually at desktop and phone widths, including the focus ring on inputs, which must stay visible.
 
 ### 2. `.accent` text on order page
 
-- Selector: `.accent` (`site.css` line 49), used on `order.html`.
+- Selector: `.accent` in `assets/css/site.css`, used on `order.html`.
 - Same colour token, so the fix in finding 1 also covers it. The phone run reports one instance, the desktop run two.
 
 ## Not in scope for this audit

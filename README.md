@@ -15,9 +15,9 @@ Preview locally: `python3 -m http.server` and open http://localhost:8000.
 
 `tests/` holds Playwright checks (13 device sizes in portrait and landscape × every page: no horizontal overflow, working nav, 44px touch targets, readable text, canonical chrome). They are kept in their own package so the site root stays dependency-free:
 
-    cd tests && npm install && npx playwright install chromium && npm test
+    scripts/start.sh --test
 
-Set `CHROMIUM_PATH` to use an existing Chromium binary.
+This installs `tests/` dependencies with `npm ci` when the lockfile changed, then runs the suite. Set `CHROMIUM_PATH` to use a specific Chromium binary; otherwise the newest preinstalled one under `/opt/pw-browsers` is used when present.
 
 ## Design system
 
@@ -32,4 +32,4 @@ One-time setup in the Cloudflare dashboard (Workers & Pages → `xs-web` → Set
 2. Optional: **Variables and Secrets** → add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as secrets (use a *new* bot token).
 3. Only after step 1 is live, set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit. Setting it before the binding exists makes every order fail with 503. See [`docs/operator-guide.md`](docs/operator-guide.md).
 
-Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` (D1 console or `wrangler d1 execute xs-orders`). For how to read and handle orders, see [`docs/operator-guide.md`](docs/operator-guide.md).
+Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` in the D1 console, or with `wrangler d1 execute xs-orders --remote --command "..."`. The `--remote` flag is required, because without it the CLI reads a local copy. For how to read and handle orders, see [`docs/operator-guide.md`](docs/operator-guide.md).
