@@ -1,6 +1,7 @@
 name: Fix apex DNS (Cloudflare)
 
 # Manual only. Runs scripts/cloudflare-fix-apex.sh. Leave apply unchecked for a dry run.
+# Only runs from main, so a branch cannot edit the script and use the production token.
 on:
   workflow_dispatch:
     inputs:
@@ -12,9 +13,16 @@ on:
 permissions:
   contents: read
 
+concurrency:
+  group: cloudflare-dns-apex
+  cancel-in-progress: false
+
 jobs:
   fix-apex:
+    if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # Add required reviewers to this environment in repo settings to gate applies.
+    environment: production-dns
     steps:
       - name: Checkout
         uses: actions/checkout@v4
