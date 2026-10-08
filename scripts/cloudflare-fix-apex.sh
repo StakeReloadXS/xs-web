@@ -3,7 +3,7 @@
 # hostnames are attached and active. Dry-run by default; pass --apply to change anything.
 #
 # Required env:
-#   CLOUDFLARE_TOKEN   API token with Zone:DNS:Edit and Account:Cloudflare Pages:Edit
+#   CF_TOKEN           API token with Zone:DNS:Edit and Account:Cloudflare Pages:Edit
 #   CF_ACCOUNT_ID      Cloudflare account ID
 #   CF_ZONE_ID         Zone ID for stakereloadxs.com
 #
@@ -15,7 +15,7 @@ set -euo pipefail
 APPLY=0
 [[ "${1:-}" == "--apply" ]] && APPLY=1
 
-: "${CLOUDFLARE_TOKEN:?CLOUDFLARE_TOKEN is not set}"
+: "${CF_TOKEN:?CF_TOKEN is not set}"
 : "${CF_ACCOUNT_ID:?CF_ACCOUNT_ID is not set}"
 : "${CF_ZONE_ID:?CF_ZONE_ID is not set}"
 
@@ -28,7 +28,7 @@ API="https://api.cloudflare.com/client/v4"
 # error message when success is not true, so auth and scope problems are visible.
 cf() {
   local method=$1 url=$2 body=${3:-}
-  local args=(-sS -X "$method" -H "Authorization: Bearer ${CLOUDFLARE_TOKEN}" -H "Content-Type: application/json" "$url")
+  local args=(-sS -X "$method" -H "Authorization: Bearer ${CF_TOKEN}" -H "Content-Type: application/json" "$url")
   [[ -n "$body" ]] && args+=(--data "$body")
   local resp
   resp=$(curl "${args[@]}") || { echo "ERROR: request failed: ${method} ${url}" >&2; exit 1; }
