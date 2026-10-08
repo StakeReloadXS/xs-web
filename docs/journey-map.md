@@ -11,7 +11,7 @@ flowchart LR
     E --> F[order.html]
     F -->|Submit name and contact| G[POST /api/order]
     G --> H[success.html: reference ID]
-    H --> I[Payment handoff: Telegram or Email]
+    H --> I[Payment handoff: Telegram or Email; order not saved server-side until orderEndpoint is enabled]
     I --> J[Credits delivered to XSID]
     D -->|Stake or Gamba link| K[External partner site]
     A -->|Questions| L[support.html]

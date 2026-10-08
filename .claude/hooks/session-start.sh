@@ -27,12 +27,31 @@ fi
 
 echo "wrangler $("$WRANGLER_BIN" --version 2>/dev/null | tail -n 1) installed at $WRANGLER_BIN" >&2
 
+# Point the layout tests at the Chromium preinstalled in the container. The lockfile's
+# Playwright version can expect a different browser build that is not installed here,
+# so launching the default browser fails. CHROMIUM_PATH takes precedence in tests/layout.test.js.
+if [ -z "${CHROMIUM_PATH:-}" ] && [ -n "${CLAUDE_ENV_FILE:-}" ]; then
+  preinstalled="$(ls -d /opt/pw-browsers/chromium-*/chrome-linux/chrome 2>/dev/null | sort -V | tail -1 || true)"
+  if [ -n "$preinstalled" ] && [ -x "$preinstalled" ]; then
+    echo "export CHROMIUM_PATH=\"$preinstalled\"" >> "$CLAUDE_ENV_FILE"
+  fi
+fi
+
 # Install the layout test dependencies so `npm test` in tests/ runs on the first try.
-# Browsers are preinstalled in the container; Playwright is pointed at them, not downloaded.
+# Reinstall whenever the lockfile changes, not only when node_modules is missing.
+# The timeout stops a slow registry from blocking session start.
 REPO_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
-if [ -f "$REPO_DIR/tests/package-lock.json" ] && [ ! -d "$REPO_DIR/tests/node_modules" ]; then
-  (cd "$REPO_DIR/tests" && npm ci --no-audit --no-fund --silent) \
-    || echo "Warning: tests/ dependencies failed to install; run 'npm ci' in tests/ manually." >&2
+LOCK="$REPO_DIR/tests/package-lock.json"
+STAMP="$REPO_DIR/tests/node_modules/.lock-sha256"
+if [ -f "$LOCK" ]; then
+  lock_sha="$(sha256sum "$LOCK" | cut -d' ' -f1)"
+  if [ ! -f "$STAMP" ] || [ "$(cat "$STAMP")" != "$lock_sha" ]; then
+    if (cd "$REPO_DIR/tests" && timeout 300 npm ci --no-audit --no-fund --silent); then
+      echo "$lock_sha" > "$STAMP"
+    else
+      echo "Warning: tests/ dependencies failed to install; run 'npm ci' in tests/ manually." >&2
+    fi
+  fi
 fi
 
 # Report presence and length only, never values.

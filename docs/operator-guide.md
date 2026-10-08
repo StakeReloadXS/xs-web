@@ -4,7 +4,14 @@ This describes what the site records today. Anything not listed here, such as pa
 
 ## Where orders go
 
-Submitted orders are saved to the D1 database `xs-orders`, table `orders`, by `functions/api/order.js`. If the Telegram secrets are set, a message is also sent to the configured chat.
+**Current state: server-side order intake is switched off.** `assets/js/config.js` has `orderEndpoint: ""`, so the order page does not post to `functions/api/order.js`. It shows the order summary with a Telegram handoff, and nothing is saved to D1. Until the owner enables intake, read orders from the customer's Telegram or email message, not from the database.
+
+When intake is enabled, submitted orders are saved to the D1 database `xs-orders`, table `orders`, by `functions/api/order.js`. Enabling it needs both steps, in this order:
+
+1. The D1 binding `DB` exists on the Pages project (see the runbook). Without it the endpoint returns 503 "orders are not configured".
+2. `orderEndpoint` is set to `/api/order` in `assets/js/config.js` and deployed.
+
+If the Telegram secrets are set, a message is also sent to the configured chat when an order is saved.
 
 ### Columns
 

@@ -14,8 +14,9 @@ PORT="${PORT:-8000}"
 if [[ "${1:-}" == "--test" ]]; then
   command -v node >/dev/null || { echo "node is required for the tests" >&2; exit 1; }
   cd "$ROOT/tests"
-  [ -d node_modules ] || npm install --no-audit --no-fund
-  # Playwright browsers are only downloaded if missing; set CHROMIUM_PATH to reuse an existing Chromium.
+  # npm ci installs exactly what package-lock.json pins, matching the session hook.
+  [ -d node_modules ] || npm ci --no-audit --no-fund
+  # tests/layout.test.js uses CHROMIUM_PATH when set; otherwise it uses Playwright's own Chromium.
   npm test
   exit $?
 fi

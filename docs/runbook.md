@@ -7,6 +7,7 @@ Production runs on Cloudflare Pages (project `xs-web`) for `stakereloadxs.com` a
 - **Trigger:** push to `main`, or run the `Deploy to Cloudflare Pages` workflow manually (`workflow_dispatch`).
 - **Workflow:** `.github/workflows/deploy-cloudflare.yml`.
 - **What gets published:** an explicit allowlist copied into `_site/`: the HTML pages, `robots.txt`, `sitemap.xml`, `_headers`, `assets/`, `data/` and `functions/`. Scripts, workflows, tests, docs and `wrangler.toml` are never published. Add new public files to the `cp` list in that workflow, or they will not deploy.
+- **Guard:** `tests/site-policy.test.js` fails if a root `.html` page is missing from the `cp` list, or if an allowlist entry no longer exists. Run `npm test` in `tests/` before merging. Local preview (`scripts/start.sh`) serves every file, so it cannot catch a missing allowlist entry.
 - **Tooling:** Node 22 and `wrangler@4`, run as `wrangler pages deploy _site --project-name=xs-web --branch=main`.
 - **Concurrency:** deploys are serialised (`deploy-cloudflare-pages` group, no cancel-in-progress).
 

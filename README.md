@@ -3,7 +3,7 @@
 Static storefront hosted on Cloudflare Pages (project `xs-web`, domain `stakereloadxs.com`). The only server-side code is the order-intake Pages Function; there is no build step.
 
 - `data/products.json` – the catalog. Edit price/availability, commit, and Pages redeploys.
-- `assets/js/config.js` – set `orderEndpoint` (hosted form endpoint accepting a JSON POST) and optionally `paymentLink`. With no endpoint, `success.html` shows the order summary with a Telegram handoff.
+- `assets/js/config.js` – `orderEndpoint` and `paymentLink`. `orderEndpoint` is currently **empty**, so orders are not saved server-side and `success.html` shows the order summary with a Telegram handoff. Enabling intake is covered under Order intake below.
 - `assets/js/app.js` – catalog rendering, localStorage cart, order submit.
 - Pages: `index`, `products`, `order`, `success`, `support`, `team`, `offers`.
 - Deploy: pushes to `main` publish to Cloudflare Pages via `.github/workflows/deploy-cloudflare.yml`. See [`docs/runbook.md`](docs/runbook.md) for the deploy, DNS fix and secret names.
@@ -30,6 +30,6 @@ Set `CHROMIUM_PATH` to use an existing Chromium binary.
 One-time setup in the Cloudflare dashboard (Workers & Pages → `xs-web` → Settings):
 1. **Bindings → Add → D1 database**: variable name `DB`, database `xs-orders`. Redeploy.
 2. Optional: **Variables and Secrets** → add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as secrets (use a *new* bot token).
-3. Set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit.
+3. Only after step 1 is live, set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit. Setting it before the binding exists makes every order fail with 503. See [`docs/operator-guide.md`](docs/operator-guide.md).
 
 Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` (D1 console or `wrangler d1 execute xs-orders`). For how to read and handle orders, see [`docs/operator-guide.md`](docs/operator-guide.md).
