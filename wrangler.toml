@@ -1,9 +1,6 @@
-name = "stakereloadxs-web"
+name = "xs-web"
 compatibility_date = "2024-01-01"
 
-# Cloudflare Pages project. Static files are served from the repo root; the
-# functions/ directory is compiled into the Pages Functions bundle.
-# The account ID is supplied at deploy time via CLOUDFLARE_ACCOUNT_ID
-# (GitHub secret), so it is not hard-coded here. Bindings such as DB (D1)
-# are managed in the Pages project settings, not in this file.
-pages_build_output_dir = "."
+# Pages project name is set by --project-name in .github/workflows/deploy-cloudflare.yml.
+# Deploy output is staged in _site/ (see that workflow), so repo tooling is never published.
+# Bindings such as DB (D1) are managed in the Pages project settings.

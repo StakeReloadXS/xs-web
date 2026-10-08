@@ -5,6 +5,10 @@ on:
     branches: [main]
   workflow_dispatch:
 
+concurrency:
+  group: deploy-cloudflare-pages
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -20,11 +24,20 @@ jobs:
       - name: Install Wrangler
         run: npm install -g wrangler@4
 
+      # Publish an explicit allowlist only. Scripts, workflows, tests, docs and
+      # wrangler.toml stay out of the public site.
+      - name: Stage public site
+        run: |
+          rm -rf _site
+          mkdir _site
+          cp -r index.html offers.html order.html products.html success.html support.html team.html \
+                robots.txt sitemap.xml _headers assets data functions _site/
+
       - name: Deploy to Cloudflare Pages
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CF_ACCOUNT_ID }}
         run: |
-          wrangler pages deploy . \
+          wrangler pages deploy _site \
             --project-name=xs-web \
             --branch=main
