@@ -1,6 +1,5 @@
 name = "xs-web"
 compatibility_date = "2024-01-01"
-pages_build_output_dir = "_site"
 
 # Pages project name is set by --project-name in .github/workflows/deploy-cloudflare.yml.
 # Deploy output is staged in _site/ (see that workflow), so repo tooling is never published.
