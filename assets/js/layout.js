@@ -27,7 +27,8 @@
     return '<div class="container"><div class="footer-grid">' +
       '<div><h4>StakeReloadXS</h4><p class="muted">A small team of web3 developers building simple, fast reload automation.</p></div>' +
       '<div><h4>Shop</h4><ul><li><a href="/products.html">Credits &amp; services</a></li><li><a href="/offers.html">Signup offers</a></li><li><a href="/order.html">Your order</a></li></ul></div>' +
-      '<div><h4>Help</h4><ul><li><a href="/support.html">Support</a></li><li><a href="https://t.me/supitsj">Telegram</a></li><li><a href="/team.html">Team</a></li></ul></div>' +
+      '<div><h4>Help</h4><ul><li><a href="/support.html">Support</a></li><li><a href="/team.html">Team</a></li></ul></div>' +
+      '<div><h4>Socials</h4><ul><li><a href="https://t.me/supitsj"><svg class="social-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="'+path+'"/></svg>Telegram</a></li></ul></div>' +
       '</div><p class="copyright">2025 &copy; All Rights Reserved | StakeReloadXS</p></div>';
   }
 
