@@ -11,7 +11,11 @@ if [ "${CLAUDE_CODE_REMOTE:-}" != "true" ]; then
   exit 0
 fi
 
-REPO_DIR="${CLAUDE_PROJECT_DIR:-$(pwd)}"
+# Resolve the repo from this script's own location. Falling back to the current directory
+# breaks when the setup runs from elsewhere (for example $HOME), because the helper path
+# then points outside the checkout.
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+REPO_DIR="$(cd "$SCRIPT_DIR/../.." && pwd)"
 
 WRANGLER_VERSION="4"
 TOOLS_DIR="${XS_WEB_TOOLS_DIR:-$HOME/.cache/xs-web-tools}"
@@ -33,8 +37,13 @@ echo "wrangler $("$WRANGLER_BIN" --version 2>/dev/null | tail -n 1) installed at
 
 # Point the layout tests at the preinstalled Chromium. CHROMIUM_PATH takes precedence in
 # tests/layout.test.js. The helper is shared with scripts/start.sh --test.
+TEST_ENV="$REPO_DIR/scripts/test-env.sh"
+if [ ! -f "$TEST_ENV" ]; then
+  echo "Error: missing $TEST_ENV; the session hook cannot locate the test helpers." >&2
+  exit 1
+fi
 # shellcheck source=../scripts/test-env.sh
-source "$REPO_DIR/scripts/test-env.sh"
+source "$TEST_ENV"
 if [ -z "${CHROMIUM_PATH:-}" ]; then
   preinstalled="$(xs_find_chromium || true)"
   if [ -n "$preinstalled" ] && [ -x "$preinstalled" ]; then
