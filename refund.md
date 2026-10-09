@@ -11,11 +11,11 @@ _Items marked [OWNER TO CONFIRM] are not yet decided._
 
 ## How orders work
 
-Orders are placed on this site and payment is arranged with you directly on Telegram or by email. The site does not take payment itself. [OWNER TO CONFIRM: payment methods and currencies.]
+Orders are placed on this site and payment is arranged with you directly on Telegram. The site does not take payment itself. [OWNER TO CONFIRM: payment methods and currencies.]
 
 ## Cancelling before payment
 
-You can cancel an order before payment is confirmed by messaging us on Telegram with your reference ID. [OWNER TO CONFIRM: any fee or time limit.]
+You can ask to cancel an order before payment is confirmed by messaging us on Telegram with your reference ID and the name and contact details you used. While order intake is off, the site does not store your reference ID, so we match the order by these details. [OWNER TO CONFIRM: any fee or time limit.]
 
 ## When you can get a refund
 
@@ -25,7 +25,7 @@ You can cancel an order before payment is confirmed by messaging us on Telegram 
 
 ## How to request a refund
 
-Message us on Telegram ([@StakeReloadXS](https://t.me/StakeReloadXS)) with your reference ID and the name and contact details you used. [OWNER TO CONFIRM: response time.]
+Message us on Telegram ([@supitsj](https://t.me/supitsj)) with your reference ID and the name and contact details you used. [OWNER TO CONFIRM: response time.]
 
 ## How refunds are paid
 

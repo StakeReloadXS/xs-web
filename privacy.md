@@ -11,12 +11,12 @@ _Items marked [OWNER TO CONFIRM] are not yet decided._
 
 ## Who we are
 
-StakeReloadXS runs this website and the reload automation service it describes. Contact us on Telegram ([@StakeReloadXS](https://t.me/StakeReloadXS)) [OWNER TO CONFIRM: add an email address for privacy requests].
+StakeReloadXS runs this website and the reload automation service it describes. Contact us on Telegram ([@supitsj](https://t.me/supitsj)) [OWNER TO CONFIRM: add an email address for privacy requests].
 
 ## What we collect
 
 - **Order details.** When you place an order: your name, how you want us to contact you (Telegram or email), your Telegram handle or email address, any notes you add, the items and quantities, the total, and the reference ID we give you. Order details are saved on our servers only when order intake is switched on. Until then, your order summary is shared with us through a Telegram message you send.
-- **Support messages.** Anything you send us on Telegram or by email.
+- **Support messages.** Anything you send us on Telegram.
 - **Live chat.** Every page loads a live chat widget from Tawk.to. It may record the messages you send in the chat and basic technical details about your visit, under Tawk.to's own privacy policy [OWNER TO CONFIRM].
 - **Hosting data.** Our hosting provider, Cloudflare, handles standard connection data, such as IP address and browser type, to deliver the site.
 
@@ -40,7 +40,7 @@ The site does not set cookies of its own. The Tawk.to chat widget may set cookie
 
 ## Your choices
 
-You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, by contacting us on Telegram. [OWNER TO CONFIRM: response time and any verification step.]
+You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, by contacting us on Telegram. [OWNER TO CONFIRM: whether deletion is offered, the process, response time and any verification step.]
 
 ## Children
 

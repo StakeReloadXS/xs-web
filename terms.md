@@ -27,7 +27,7 @@ We do not guarantee financial returns, gambling outcomes, claim success, or any 
 
 ## Orders and payment
 
-Orders are placed on this site and payment is arranged with you directly on Telegram or by email. Refunds and cancellations follow our Refund Policy (`refund.html`, source `refund.md`). [OWNER TO CONFIRM: order acceptance rules and any minimum order.]
+Orders are placed on this site and payment is arranged with you directly on Telegram. Refunds and cancellations follow our Refund Policy (`refund.html`, source `refund.md`). [OWNER TO CONFIRM: order acceptance rules and any minimum order.]
 
 ## Affiliate relationships
 
@@ -45,7 +45,7 @@ You must be of legal age and allowed to use the platforms you choose in your loc
 
 ## Site content
 
-The text, images and code on this site belong to StakeReloadXS or are used with permission. You may view and share pages, but you may not copy or resell the content without written permission. [OWNER TO CONFIRM: licence for the site code, if it is open-sourced.]
+The text, images and code on this site belong to StakeReloadXS or are used with permission. You may view and share pages, but you may not copy or resell the content without written permission. [OWNER TO CONFIRM: ownership of the text, images and code, any third-party permissions, and the copying restriction.]
 
 ## Privacy
 
@@ -65,7 +65,7 @@ We will publish changes on the page and update the version and dates at the top.
 
 ## Contact
 
-Contact us on Telegram ([@StakeReloadXS](https://t.me/StakeReloadXS)) [OWNER TO CONFIRM: add an email address for legal notices].
+Contact us on Telegram ([@supitsj](https://t.me/supitsj)) [OWNER TO CONFIRM: add an email address for legal notices].
 
 ## Version history
 

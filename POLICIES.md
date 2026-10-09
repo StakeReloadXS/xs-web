@@ -1,6 +1,6 @@
 # StakeReloadXS policies
 
-Single source for the site's policy documents, their version history and their publication dates. The published pages are `privacy.html` and `refund.html`. The FAQ entries live in `support.html`. The affiliate disclosure is an owner draft and is not yet published.
+Register and rules for the site's policy documents, their version history and their publication dates. The text of each live page is kept in its markdown source (`privacy.md`, `refund.md`, `terms.md`). The published pages are `privacy.html` and `refund.html`. The FAQ entries live in `support.html`. The affiliate disclosure is an owner draft and is not yet published.
 
 ## Version control rules
 
@@ -50,11 +50,11 @@ These need an owner decision before the pages are final. Every one is marked `[O
 
 ## Privacy Policy (version 1.0, published 9 October 2026)
 
-**Who we are.** StakeReloadXS runs this website and the reload automation service it describes. Contact us on Telegram (@StakeReloadXS) [OWNER TO CONFIRM: add an email address for privacy requests].
+**Who we are.** StakeReloadXS runs this website and the reload automation service it describes. Contact us on Telegram (@supitsj) [OWNER TO CONFIRM: add an email address for privacy requests].
 
 **What we collect.**
 - *Order details.* When you place an order: your name, how you want us to contact you (Telegram or email), your Telegram handle or email address, any notes you add, the items and quantities, the total, and the reference ID we give you. Order details are saved on our servers only when order intake is switched on. Until then, your order summary is shared with us through a Telegram message you send.
-- *Support messages.* Anything you send us on Telegram or by email.
+- *Support messages.* Anything you send us on Telegram.
 - *Live chat.* Every page loads a live chat widget from Tawk.to. It may record the messages you send in the chat and basic technical details about your visit, under Tawk.to's own privacy policy [OWNER TO CONFIRM].
 - *Hosting data.* Our hosting provider, Cloudflare, handles standard connection data, such as IP address and browser type, to deliver the site.
 
@@ -66,7 +66,7 @@ These need an owner decision before the pages are final. Every one is marked `[O
 
 **How long we keep it.** [OWNER TO CONFIRM: retention period for order records and support messages, and the process for deleting them.]
 
-**Your choices.** You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, by contacting us on Telegram. [OWNER TO CONFIRM: response time and any verification step.]
+**Your choices.** You can ask us what information we hold about you, ask us to correct it, or ask us to delete it, by contacting us on Telegram. [OWNER TO CONFIRM: whether deletion is offered, the process, response time and any verification step.]
 
 **Children.** This service is not for anyone under 18. [OWNER TO CONFIRM: age requirement and wording.]
 
@@ -76,13 +76,13 @@ These need an owner decision before the pages are final. Every one is marked `[O
 
 ## Refund Policy (version 1.0, published 9 October 2026)
 
-**How orders work.** Orders are placed on this site and payment is arranged with you directly on Telegram or by email. The site does not take payment itself. [OWNER TO CONFIRM: payment methods and currencies.]
+**How orders work.** Orders are placed on this site and payment is arranged with you directly on Telegram. The site does not take payment itself. [OWNER TO CONFIRM: payment methods and currencies.]
 
-**Cancelling before payment.** You can cancel an order before payment is confirmed by messaging us on Telegram with your reference ID. [OWNER TO CONFIRM: any fee or time limit.]
+**Cancelling before payment.** You can ask to cancel an order before payment is confirmed by messaging us on Telegram with your reference ID and the name and contact details you used. While order intake is off, the site does not store your reference ID, so we match the order by these details. [OWNER TO CONFIRM: any fee or time limit.]
 
 **When you can get a refund.** [OWNER TO CONFIRM: the refund rule, for example refunds are available when ___, within ___ days of payment confirmation.] [OWNER TO CONFIRM: whether credits already delivered to an XSID can be refunded, and in what cases.]
 
-**How to request a refund.** Message us on Telegram (@StakeReloadXS) with your reference ID and the name and contact details you used. [OWNER TO CONFIRM: response time.]
+**How to request a refund.** Message us on Telegram (@supitsj) with your reference ID and the name and contact details you used. [OWNER TO CONFIRM: response time.]
 
 **How refunds are paid.** [OWNER TO CONFIRM: refund method and currency, and how long it takes.]
 
@@ -94,7 +94,7 @@ These need an owner decision before the pages are final. Every one is marked `[O
 
 **Can I get a refund?** Our Refund Policy explains when refunds and cancellations are possible and how to ask for one. You can also message us on Telegram with your reference ID.
 
-**How is my personal information used?** Our Privacy Policy explains what we collect, who we share it with and how to ask us to delete it.
+**How is my personal information used?** Our Privacy Policy explains what we collect and who we share it with.
 
 ---
 
