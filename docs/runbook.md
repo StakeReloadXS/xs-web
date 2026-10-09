@@ -55,6 +55,12 @@ No secret values belong in the repo or in this document.
 
 Cloudflare Pages keeps earlier deployments. In the Pages dashboard, open the `xs-web` project, choose the last good deployment and roll back to it. Then fix the change on a branch and redeploy from `main`.
 
+## 6. Custom domain and the CNAME file
+
+- The `CNAME` file at the repo root is unused by the Cloudflare Pages deploy. The workflow stages an explicit allowlist into `_site/` and never copies it.
+- It is kept pending owner approval for removal under issue #27. Do not delete it without that approval.
+- The custom domain (`stakereloadxs.com` and `www.stakereloadxs.com`) is managed in the Cloudflare Pages project settings, not from the repo.
+
 ## Known gaps
 
 - The local `CNAME` file is not part of the deploy. It is kept only for reference and can be removed in a later cleanup.
