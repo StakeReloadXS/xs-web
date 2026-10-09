@@ -90,3 +90,28 @@ test("Telegram notification is best effort", async () => {
     assert.match(sent.body.text, /2 x 50,000 XS Credits/);
   } finally { global.fetch = orig; }
 });
+
+// Boost is set by the whole order total, so items in one order combine toward a tier.
+const order = (items) => ({ ...good(), items });
+const boostOf = async (items) => {
+  const { onRequestPost } = await load();
+  const res = await onRequestPost({ request: req(order(items)), env: env() });
+  return (await res.json()).boostPercent;
+};
+
+test("a single $50 pack gets no boost", async () => {
+  assert.equal(await boostOf([{ id: "xs-credits-50k", quantity: 1 }]), 0);
+});
+
+test("items in one order combine toward a boost tier", async () => {
+  // $50 + $100 = $150, which reaches the $100 tier and not the $200 tier.
+  assert.equal(await boostOf([{ id: "xs-credits-50k", quantity: 1 }, { id: "xs-credits-100k", quantity: 1 }]), 5);
+});
+
+test("tier minimums are inclusive and the highest reached tier applies", async () => {
+  assert.equal(await boostOf([{ id: "xs-credits-200k", quantity: 1 }]), 10);
+  assert.equal(await boostOf([{ id: "xs-credits-500k", quantity: 1 }]), 15);
+  assert.equal(await boostOf([{ id: "xs-credits-1m", quantity: 1 }]), 20);
+  // $1,000 + $5 is still the top tier, not a tier computed from one item.
+  assert.equal(await boostOf([{ id: "xs-credits-1m", quantity: 1 }, { id: "new-xsid", quantity: 1 }]), 20);
+});

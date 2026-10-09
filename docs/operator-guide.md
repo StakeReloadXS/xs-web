@@ -63,6 +63,20 @@ Do not submit test orders against production without agreement. If one is needed
 
 Never delete by pattern, such as `LIKE 'XS-TEST%'`, without first reviewing every matching row.
 
+## Boost
+
+The boost tier is set by the whole order total, so items in one order combine toward a tier. The tiers are in `data/products.json` (`boostTiers`):
+
+| Order total | Boost |
+|---|---|
+| under $100 | none |
+| $100 or more | 5% |
+| $200 or more | 10% |
+| $500 or more | 15% |
+| $1,000 or more | 20% |
+
+The server works out the tier from the recomputed total and includes it in the Telegram notice (`boost N%`). The order row does not store the boost. Calculate it from `total` if you need it for credits.
+
 ## Not covered here (needs owner decisions)
 
 - Refund and cancellation policy
