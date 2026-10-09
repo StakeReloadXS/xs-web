@@ -28,7 +28,8 @@ export async function onRequestPost({ request, env }) {
   if (!Array.isArray(body.items) || body.items.length === 0 || body.items.length > 20) return json({ ok: false, error: "invalid items" }, 400);
 
   const catalogRes = await env.ASSETS.fetch(new URL("/data/products.json", request.url));
-  const catalog = Object.fromEntries((await catalogRes.json()).products.map((p) => [p.id, p]));
+  const catalogData = await catalogRes.json();
+  const catalog = Object.fromEntries(catalogData.products.map((p) => [p.id, p]));
   const items = [];
   let total = 0;
   for (const line of body.items) {
@@ -39,6 +40,8 @@ export async function onRequestPost({ request, env }) {
     total += p.price * qty;
   }
   total = Math.round(total * 100) / 100;
+  // The boost tier is set by the whole order total, so items in one order combine toward it.
+  const boost = boostPercent(total, catalogData.boostTiers);
 
   try {
     await env.DB.prepare("INSERT INTO orders (reference, created_at, name, contact_method, contact, notes, items_json, total) VALUES (?, ?, ?, ?, ?, ?, ?, ?)")
@@ -50,14 +53,24 @@ export async function onRequestPost({ request, env }) {
 
   if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) {
     const text = `New order ${reference}\n` + items.map((i) => `${i.quantity} x ${i.name}`).join("\n") +
-      `\nTotal: $${total.toFixed(2)}\n${name}\n${contactMethod}: ${contact}` + (notes ? `\nNotes: ${notes}` : "");
+      `\nTotal: $${total.toFixed(2)}` + (boost ? ` (boost ${boost}%)` : "") +
+      `\n${name}\n${contactMethod}: ${contact}` + (notes ? `\nNotes: ${notes}` : "");
     try {
       await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
         method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text })
       });
     } catch { /* order is saved; notification is best effort */ }
   }
-  return json({ ok: true, reference, total });
+  return json({ ok: true, reference, total, boostPercent: boost });
+}
+
+// Highest tier whose minimum the total reaches; 0 when none applies.
+function boostPercent(total, tiers) {
+  let percent = 0;
+  for (const t of tiers || []) {
+    if (total >= t.minTotal && t.percent > percent) percent = t.percent;
+  }
+  return percent;
 }
 
 export const onRequest = () => json({ ok: false, error: "method not allowed" }, 405);

@@ -20,15 +20,31 @@
   function updateBadge() {
     document.querySelectorAll("[data-cart-count]").forEach(function (el) { el.textContent = cartCount(); });
   }
+  function getCatalog() {
+    return fetch("/data/products.json").then(function (r) { return r.json(); });
+  }
   function getProducts() {
-    return fetch("/data/products.json").then(function (r) { return r.json(); }).then(function (d) { return d.products; });
+    return getCatalog().then(function (d) { return d.products; });
+  }
+  // Highest boost tier the order total reaches; 0 when none applies. Mirrors boostPercent in functions/api/order.js.
+  function boostFor(total, tiers) {
+    var pct = 0;
+    (tiers || []).forEach(function (t) { if (total >= t.minTotal && t.percent > pct) pct = t.percent; });
+    return pct;
   }
   function makeRef() {
     return "XS-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   }
 
   function renderProducts(el) {
-    getProducts().then(function (products) {
+    getCatalog().then(function (catalog) {
+      var products = catalog.products;
+      var tierEl = document.querySelector("[data-boost-tiers]");
+      if (tierEl) {
+        tierEl.innerHTML = (catalog.boostTiers || []).map(function (t) {
+          return "<li>" + t.percent + "% at " + money(t.minTotal) + " or more</li>";
+        }).join("");
+      }
       el.innerHTML = products.map(function (p) {
         var ok = p.availability === "in-stock";
         return '<article class="card">' +
@@ -56,13 +72,16 @@
     var totalEl = root.querySelector("[data-total]");
     var form = root.querySelector("form");
     var status = root.querySelector("[data-status]");
+    var boostEl = root.querySelector("[data-boost]");
     var byId = {};
+    var tiers = [];
 
     function draw() {
       var cart = loadCart(), total = 0, ids = Object.keys(cart).filter(function (id) { return byId[id]; });
       if (!ids.length) {
         list.innerHTML = '<p class="muted">Your order is empty. <a class="accent" href="/products.html">Browse products</a>.</p>';
         totalEl.textContent = money(0);
+        if (boostEl) boostEl.textContent = "";
         form.querySelector("[type=submit]").disabled = true;
         return;
       }
@@ -74,6 +93,10 @@
           '<span aria-live="polite">' + q + '</span><button type="button" data-inc="' + id + '" aria-label="Add one ' + esc(p.name) + '">+</button></div></div>';
       }).join("");
       totalEl.textContent = money(total);
+      if (boostEl) {
+        var pct = boostFor(total, tiers);
+        boostEl.textContent = pct ? "Boost on this order: " + pct + "%" : "No boost yet. Orders of $100 or more get a boost.";
+      }
     }
 
     list.addEventListener("click", function (e) {
@@ -98,7 +121,7 @@
         items: items, total: total, createdAt: new Date().toISOString()
       };
       var summary = "Order " + order.reference + "\n" + items.map(function (i) { return i.quantity + " x " + i.name + " (" + money(i.unitPrice) + ")"; }).join("\n") +
-        "\nTotal: " + money(total) + "\nName: " + order.name + "\n" + order.contactMethod + ": " + order.contact + (order.notes ? "\nNotes: " + order.notes : "");
+        "\nTotal: " + money(total) + (boostFor(total, tiers) ? "\nBoost: " + boostFor(total, tiers) + "%" : "") + "\nName: " + order.name + "\n" + order.contactMethod + ": " + order.contact + (order.notes ? "\nNotes: " + order.notes : "");
       try { sessionStorage.setItem("xs-last-order", JSON.stringify({ reference: order.reference, summary: summary, total: total })); } catch (err) {}
 
       var done = function () { saveCart({}); window.location.href = "/success.html?ref=" + encodeURIComponent(order.reference); };
@@ -112,7 +135,7 @@
       }
     });
 
-    getProducts().then(function (products) { products.forEach(function (p) { byId[p.id] = p; }); draw(); });
+    getCatalog().then(function (catalog) { catalog.products.forEach(function (p) { byId[p.id] = p; }); tiers = catalog.boostTiers || []; draw(); });
   }
 
   function renderSuccess(root) {

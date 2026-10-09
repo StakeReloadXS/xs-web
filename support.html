@@ -36,6 +36,29 @@
   <script src="/assets/js/config.js"></script>
   <script src="/assets/js/layout.js" defer></script>
   <script src="/assets/js/app.js" defer></script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How do I place an order?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Add items on the Shop page, review them on the Order page and submit your name and contact details. You will get a reference ID." }
+      },
+      {
+        "@type": "Question",
+        "name": "When do I receive my credits?",
+        "acceptedAnswer": { "@type": "Answer", "text": "Credits are delivered to your XSID after payment is confirmed." }
+      },
+      {
+        "@type": "Question",
+        "name": "I lost my reference ID.",
+        "acceptedAnswer": { "@type": "Answer", "text": "Message us on Telegram with the name and contact details you used, and paste the order summary if you still have it. We will check for your order." }
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
@@ -54,7 +77,7 @@
         <div class="faq">
           <details><summary>How do I place an order?</summary><p class="muted">Add items on the Shop page, review them on the Order page and submit your name and contact details. You will get a reference ID.</p></details>
           <details><summary>When do I receive my credits?</summary><p class="muted">Credits are delivered to your XSID after payment is confirmed.</p></details>
-          <details><summary>I lost my reference ID.</summary><p class="muted">Message us on Telegram with the contact details you used and we will find your order.</p></details>
+          <details><summary>I lost my reference ID.</summary><p class="muted">Message us on Telegram with the name and contact details you used, and paste the order summary if you still have it. We will check for your order.</p></details>
         </div>
       </div>
     </section>
