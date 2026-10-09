@@ -16,6 +16,7 @@ Single source for the site's policy documents, their version history and their p
 |---|---|---|---|---|---|
 | Privacy Policy | `privacy.html` | 1.0 | 9 October 2026 | 9 October 2026 | Live, pending owner review of marked items |
 | Refund Policy | `refund.html` | 1.0 | 9 October 2026 | 9 October 2026 | Live, pending owner review of marked items |
+| Terms of Use | `terms.html` | 1.0 | 9 October 2026 | 9 October 2026 | Live, pending owner review of marked items |
 | FAQ entries (refund, privacy) | `support.html` | 1.0 | 9 October 2026 | 9 October 2026 | Live; answers point to the two policies above |
 | Affiliate Disclosure & Program Benefits | not yet published | owner draft | not published | 8 October 2026 (owner's date on the draft) | Draft, not approved; see open questions below |
 
@@ -25,6 +26,7 @@ Single source for the site's policy documents, their version history and their p
 |---|---|---|---|
 | 9 October 2026 | Privacy Policy | 1.0 | First published version. |
 | 9 October 2026 | Refund Policy | 1.0 | First published version. |
+| 9 October 2026 | Terms of Use | 1.0 | First published version. |
 | 9 October 2026 | FAQ (`support.html`) | 1.0 | Added "Can I get a refund?" and "How is my personal information used?". |
 | 8 October 2026 | Affiliate Disclosure | owner draft | Owner text supplied in the session. Not published. |
 
@@ -34,6 +36,7 @@ These need an owner decision before the pages are final. Every one is marked `[O
 
 - Privacy: an email address for privacy requests, retention periods, the complete list of recipients, Tawk.to's cookie and chat-data terms, the age requirement, and response times.
 - Refunds: the refund window and eligibility rule, whether delivered credits can be refunded, the refund method and currency, who approves refunds, and processing times.
+- Terms of use: the scope of the automation service and any service limits, order acceptance rules, minimum age and location restrictions, the limitation-of-liability and governing-law wording (to be reviewed by a qualified lawyer before publishing), the site content licence, and a legal-notices email address.
 - Affiliate disclosure: the 50% discount and the priority queue are not in the repo. The text conflicts with the 25% commission share on `offers.html` and the "up to 20% of their deposits" line on `index.html`. Confirm the programme terms before publishing.
 
 ---
