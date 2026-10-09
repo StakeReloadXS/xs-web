@@ -168,3 +168,9 @@ pre.summary { background: var(--surface-2); border-radius: var(--radius); paddin
 .copyright { text-align: center; color: var(--muted); border-top: 1px solid var(--line); margin: 2rem 0 0; padding-top: 1.5rem; font-size: 0.875rem; }
 
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; scroll-behavior: auto !important; } }
+
+/* Policy pages: readable line length and simple tables */
+.policy { max-width: 46rem; }
+.policy h2 { margin-top: 2rem; font-size: 1.25rem; }
+.policy table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
+.policy th, .policy td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--line); }
