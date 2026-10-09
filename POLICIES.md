@@ -9,6 +9,13 @@ Single source for the site's policy documents, their version history and their p
 - Dates use the form `D Month YYYY`, for example `9 October 2026`.
 - To change a policy: edit the page, update the version and dates at the top of that page, add a row to its history table on the page, and add the same row to the register below. Commit both in the same change.
 - Do not edit a published version in place without a new row. The history table is the record of what was live and when.
+- Every live legal page has a markdown source at the repository root. Edit the source first, then make the same change in the page, so the two never differ. Keep the version and dates identical in both.
+
+| Page | Source |
+|---|---|
+| `privacy.html` | `privacy.md` |
+| `refund.html` | `refund.md` |
+| `terms.html` | `terms.md` |
 
 ## Register
 
