@@ -30,7 +30,7 @@ jobs:
         run: |
           rm -rf _site
           mkdir _site
-          cp -r index.html offers.html order.html products.html success.html support.html team.html \
+          cp -r index.html offers.html order.html products.html privacy.html refund.html success.html support.html team.html \
                 robots.txt sitemap.xml _headers assets data functions _site/
 
       - name: Deploy to Cloudflare Pages
