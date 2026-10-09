@@ -23,6 +23,8 @@ This installs `tests/` dependencies with `npm ci` when the lockfile changed, the
 
 `assets/css/site.css` is the single stylesheet (tokens in `:root`); `assets/js/layout.js` renders the shared header and footer on every page.
 
+Social icons live in `assets/img/social/` as SVG files coloured with the site accent (`#dc2626`). The footer links the channels listed in `assets/js/layout.js`; add an icon there and a link in the same list.
+
 ## Order intake (Cloudflare Pages Function + D1)
 
 `functions/api/order.js` serves `POST /api/order`: it validates the order, recomputes prices from `data/products.json`, stores it in the D1 database `xs-orders` (table `orders`), and optionally notifies Telegram.
