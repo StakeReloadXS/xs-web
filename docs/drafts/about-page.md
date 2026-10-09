@@ -34,7 +34,7 @@ Issue #14. `about.html` does not exist yet. This is a skeleton. Wording is taken
 Reuse existing copy from `index.html`:
 
 - **Automatic Claims.** "We make your bonus lifecycle as simple and painless as possible."
-- **Private Servers.** "Specialist set-up for bigger requirements. Contact us on Telegram."
+- **Private Servers.** "Have bigger requirements? We work with many big clients who require specialist set up. Contact us for more info."
 - **KYC account help.** [OWNER TO CONFIRM] Keep only if the service continues. `index.html` lists Level 2 = $75, Level 3 = $500, Level 4 = $1,000. `data/products.json` lists only KYC Level 2 at $75. Confirm the levels and prices.
 - **Guaranteed $10,000 wager.** Leave out until the terms exist. [OWNER TO CONFIRM]
 

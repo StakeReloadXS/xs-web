@@ -7,7 +7,7 @@ Issue #12. Target page: `offers.html`. Nothing here has been applied to the live
 ## Open questions (answer these first)
 
 1. **How does StakeReloadXS get paid by Stake and Gamba?** The repo does not say whether the site earns a commission, a fixed fee per signup, or something else. The disclosure cannot be finalised without this.
-2. **Who receives the Gamba "25% Commission Share"?** The card says "we share 25% commission with you". That could mean the visitor or the site. Confirm before publishing.
+2. **Who receives the Gamba "25% Commission Share"?** The card says "we share 25% commission with you". That could mean the visitor or the site. Confirm before publishing. The affiliate copy also conflicts across pages: `index.html` says affiliates earn "up to 20% of their deposits", while `offers.html` shows a 25% commission share. Confirm the correct rate and which claim stays.
 3. **Program rules.** Do Stake and Gamba require specific disclosure wording or placement? Issue #12 asks for each program's link-usage rules. They are not in the repo.
 4. **Offer terms and expiry.** "$21 free" and "25% Commission Share" need terms and an expiry date (issue #13). Neither is in the repo.
 5. **Legal review.** Does the owner want a legal review of the wording before it goes live? This draft is copy only and is not legal advice.

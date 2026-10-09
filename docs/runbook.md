@@ -59,9 +59,9 @@ Cloudflare Pages keeps earlier deployments. In the Pages dashboard, open the `xs
 
 - The `CNAME` file at the repo root is unused by the Cloudflare Pages deploy. The workflow stages an explicit allowlist into `_site/` and never copies it.
 - It is kept pending owner approval for removal under issue #27. Do not delete it without that approval.
-- The custom domain (`stakereloadxs.com` and `www.stakereloadxs.com`) is managed in the Cloudflare Pages project settings, not from the repo.
+- The custom domain (`stakereloadxs.com` and `www.stakereloadxs.com`) is attached to the Cloudflare Pages project. `scripts/cloudflare-fix-apex.sh` can also set the apex and www attachments and the apex DNS record through the Cloudflare API when run with `--apply`.
 
 ## Known gaps
 
-- The local `CNAME` file is not part of the deploy. It is kept only for reference and can be removed in a later cleanup.
+- The local `CNAME` file is not part of the deploy. It is kept pending owner approval for removal (see section 6).
 - Secret rotation has no written schedule. Owner to decide.

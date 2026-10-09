@@ -10,7 +10,7 @@ This covers the four manual checks listed as not yet run in `docs/accessibility-
 - Playwright (from `tests/node_modules`) driving the preinstalled Chromium at `CHROMIUM_PATH` (`/opt/pw-browsers/chromium-1194/chrome-linux/chrome`), headless. Chromium launched without error. `playwright install` was not run.
 - Tab order and focus: keyboard `Tab` presses from the top of each page at 1280x800. Each stop was compared against the list of visible focusable elements in DOM order. Focus style was read as computed `outline`, `box-shadow`, border and background, before and after focus.
 - Names: computed from `aria-labelledby`, `aria-label`, `<label>` (for or wrapping), `value`, `title`, and text content, in that order.
-- Reflow: viewport 640 px wide (equivalent to 320 CSS px at 200% zoom), `scrollWidth` compared with `clientWidth`.
+- Reflow: viewport 320 CSS px wide (the WCAG 1.4.10 width), `scrollWidth` compared with `clientWidth`. A 640 px run was also recorded as a stricter, non-criterion check.
 - Contrast: computed from the hex tokens on `:root` and from the computed colours of the active nav link and `.accent` text. Ratios use the WCAG relative-luminance formula.
 - axe-core was not re-run. It is not in `tests/node_modules` and was not installed, so the automated half of the audit is not re-verified here.
 
@@ -67,9 +67,9 @@ Each issue is marked blocking or not. "Blocking" means it fails a WCAG AA criter
 - Global `:focus-visible` (`outline: 2px solid #fff; outline-offset: 2px`) is present on every page. The skip link, brand link, nav links and footer links all showed it.
 - Inputs, select and textarea on `order.html` show the accent outline (`rgb(220, 38, 38) solid 2px`). On black that is 4.35:1, which clears the 3:1 non-text contrast requirement (1.4.11). If the accent is changed to `#ef4444` (5.58:1), the input focus ring remains visible.
 
-## Reflow at 200% zoom (640 px)
+## Reflow (WCAG 1.4.10, 320 CSS px)
 
-No page overflows horizontally at 640 px: `scrollWidth` equals `clientWidth` (640) on all seven pages. 320 CSS px at 100% zoom was not tested separately.
+No page overflows horizontally at 320 CSS px: `scrollWidth` equals `clientWidth` (320) on all seven pages (`index`, `products`, `order`, `support`, `team`, `offers`, `success`). This is the width the reflow criterion uses. The earlier 640 px run is also clean (`scrollWidth` equals `clientWidth` on all seven), but it is not the criterion test.
 
 ## Accent contrast re-check
 
