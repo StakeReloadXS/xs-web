@@ -1,11 +1,11 @@
 // Canonical site chrome: one header/footer rendered into every page.
 (function () {
   var LINKS = [
-    ["/", "Home"],
-    ["/products.html", "Shop"],
-    ["/offers.html", "Offers"],
-    ["/team.html", "Team"],
-    ["/support.html", "Support"]
+    ["/", "Home", "/assets/img/nav/home.svg"],
+    ["/products.html", "Shop", "/assets/img/nav/products.svg"],
+    ["/offers.html", "Offers", "/assets/img/nav/offers.svg"],
+    ["/team.html", "Team", "/assets/img/nav/team.svg"],
+    ["/support.html", "Support", "/assets/img/nav/support.svg"]
   ];
   var path = location.pathname.replace(/index\.html$/, "");
   if (path === "") path = "/";
@@ -13,9 +13,9 @@
   function header() {
     var items = LINKS.map(function (l) {
       var cur = l[0] === path ? ' aria-current="page"' : "";
-      return '<li><a href="' + l[0] + '"' + cur + ">" + l[1] + "</a></li>";
+      return '<li><a href="' + l[0] + '"' + cur + '><img class="nav-icon" src="' + l[2] + '" alt="" width="18" height="18">' + l[1] + "</a></li>";
     }).join("") + '<li><a href="/order.html"' + (path === "/order.html" ? ' aria-current="page"' : "") +
-      '>Order (<span data-cart-count>0</span>)</a></li>';
+      '><img class="nav-icon" src="/assets/img/nav/cart.svg" alt="" width="18" height="18">Order (<span data-cart-count>0</span>)</a></li>';
     return '<div class="container header-inner">' +
       '<a class="brand" href="/" aria-label="StakeReloadXS home"><img src="/assets/img/og-image.png" width="48" height="48" alt=""></a>' +
       '<button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Menu">' +
@@ -27,7 +27,8 @@
     return '<div class="container"><div class="footer-grid">' +
       '<div><h4>StakeReloadXS</h4><p class="muted">A small team of web3 developers building simple, fast reload automation.</p></div>' +
       '<div><h4>Shop</h4><ul><li><a href="/products.html">Credits &amp; services</a></li><li><a href="/offers.html">Signup offers</a></li><li><a href="/order.html">Your order</a></li></ul></div>' +
-      '<div><h4>Help</h4><ul><li><a href="/support.html">Support</a></li><li><a href="/team.html">Team</a></li><li><a href="/privacy.html">Privacy</a></li><li><a href="/refund.html">Refunds</a></li><li><a href="/terms.html">Terms</a></li></ul></div>' +
+      '<div><h4>Help</h4><ul><li><a href="/support.html">Support</a></li><li><a href="/team.html">Team</a></li></ul></div>' +
+      '<div><h4>Legal</h4><ul><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/refund.html">Refund Policy</a></li><li><a href="/terms.html">Terms of Use</a></li></ul></div>' +
       '<div><h4>Socials</h4><ul><li><a href="https://x.com/ReloadedXS"><img class=\"social-icon\" src=\"/assets/img/social/twitter.svg\" alt=\"\" width=\"18\" height=\"18\">X (Twitter)</a></li><li><a href="https://github.com/StakeReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/github.svg\" alt=\"\" width=\"18\" height=\"18\">GitHub</a></li><li><a href="https://t.me/StakeReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Channel</a></li><li><a href="https://t.me/ReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Group</a></li><li><a href="https://t.me/StakeAssistBot"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Bot</a></li><li><a href="https://dsc.gg/stakereloadxs"><img class=\"social-icon\" src=\"/assets/img/social/discord.svg\" alt=\"\" width=\"18\" height=\"18\">Discord</a></li><li><a href="https://www.linkedin.com/posts/stakereloadxs_stakereloadxs-xtremely-simple-reloads-activity-7317202258264240129-XMmY"><img class=\"social-icon\" src=\"/assets/img/social/linkedin.svg\" alt=\"\" width=\"18\" height=\"18\">LinkedIn</a></li></ul></div>' +
       '</div><p class="copyright">2025 &copy; All Rights Reserved | StakeReloadXS</p></div>';
   }
