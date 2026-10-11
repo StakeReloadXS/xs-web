@@ -19,7 +19,7 @@
     --color-accent-strong: #b91c1c;
     --color-accent-glow: rgba(220, 38, 38, 0.28);
     --color-ok: #22c55e;
-    --color-shadow: rgba(0, 0, 0, 0.4);
+    --color-shadow: rgba(0, 0, 0, 0.5);
     --color-focus: #ffffff;
 
     /* Typography */
@@ -60,8 +60,8 @@
     --size-chat-panel: min(16rem, calc(100vw - 2rem));
 
     /* Elevation */
-    --shadow-chat: 0 4px 16px var(--color-shadow);
-    --shadow-panel: 0 8px 24px rgb(0 0 0 / 0.5);
+    --shadow-chat: 0 6px 18px var(--color-shadow);
+    --shadow-panel: 0 12px 32px rgb(0 0 0 / 0.5);
 
     /* Motion */
     --duration-fast: 150ms;

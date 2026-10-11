@@ -42,8 +42,8 @@
   --spacing-tap: 2.75rem; /* 44px minimum touch target */
   --spacing-hero-min: min(32rem, 85svh);
 
-  --shadow-chat: 0 4px 16px rgb(0 0 0 / 0.4);
-  --shadow-panel: 0 8px 24px rgb(0 0 0 / 0.5);
+  --shadow-chat: 0 6px 18px rgb(0 0 0 / 0.5);
+  --shadow-panel: 0 12px 32px rgb(0 0 0 / 0.5);
 
   --breakpoint-nav: 56.25em; /* 900px: inline nav from here up */
 }
