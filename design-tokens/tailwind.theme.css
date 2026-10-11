@@ -1,0 +1,49 @@
+/* StakeReloadXS theme for Tailwind CSS v4 (generated from tokens.json).
+   Usage in a React/Vite app:
+     @import "tailwindcss";
+     @import "./tokens/tailwind.theme.css";
+   Utilities then exist as bg-surface, text-muted, border-line, rounded-theme, max-w-container, etc. */
+@theme {
+  --color-bg: #000000;
+  --color-surface: #111111;
+  --color-surface-2: #1c1c1c;
+  --color-surface-hover: #2a2a2a;
+  --color-line: #2b2b2b;
+  --color-text: #f3f4f6;
+  --color-muted: #a3a3a3;
+  --color-on-accent: #ffffff;
+  --color-accent: #dc2626;
+  --color-accent-strong: #b91c1c;
+  --color-accent-glow: rgba(220, 38, 38, 0.28);
+  --color-ok: #22c55e;
+
+  --font-sans: Poppins, Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  --text-small: 0.875rem;
+  --text-h3: 1.25rem;
+  --text-h1: clamp(2rem, 6vw + 0.5rem, 4.5rem);
+  --text-h2: clamp(1.625rem, 3vw + 0.75rem, 2.5rem);
+  --text-price: clamp(1.75rem, 4vw, 2.25rem);
+  --text-lead: clamp(1rem, 1.5vw + 0.5rem, 1.25rem);
+
+  --spacing-gutter: clamp(1rem, 4vw, 2.5rem);
+  --spacing-section: clamp(2.5rem, 7vw, 5rem);
+  --spacing-section-head: clamp(1.5rem, 4vw, 3rem);
+  --spacing-grid-gap: clamp(1rem, 3vw, 2rem);
+  --spacing-hero: clamp(2.5rem, 8vw, 6rem);
+  --spacing-card: clamp(1.25rem, 3vw, 1.75rem);
+  --spacing-panel: clamp(1.25rem, 4vw, 2rem);
+
+  --radius-theme: 0.5rem;
+  --container-container: 70rem;
+  --container-narrow: 46rem;
+  --spacing-header: 4rem;
+  --spacing-tap: 2.75rem; /* 44px minimum touch target */
+  --spacing-hero-min: min(32rem, 85svh);
+
+  --shadow-chat: 0 4px 16px rgb(0 0 0 / 0.4);
+  --shadow-panel: 0 8px 24px rgb(0 0 0 / 0.5);
+
+  --breakpoint-nav: 56.25em; /* 900px: inline nav from here up */
+}
