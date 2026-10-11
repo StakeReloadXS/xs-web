@@ -40,7 +40,7 @@ The script expects `CF_TOKEN`, not `CLOUDFLARE_TOKEN`. The mapping lives in the 
 Workers & Pages → `xs-web` → Settings:
 
 1. **Bindings → D1 database:** variable `DB`, database `xs-orders`. Redeploy after adding.
-2. **Variables and Secrets (optional):** `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`. Use a bot token that has not been shared before. Telegram alerts are best effort; the order is saved first.
+2. **Variables and Secrets (optional):** `TG_BOT_TOKEN` and `TG_CHAT_ID`. Use a bot token that has not been shared before. Telegram alerts are best effort; the order is saved first.
 
 No secret values belong in the repo or in this document.
 

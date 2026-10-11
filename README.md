@@ -33,7 +33,7 @@ Navigation icons live in `assets/img/nav/`. Social icons live in `assets/img/soc
 
 One-time setup in the Cloudflare dashboard (Workers & Pages → `xs-web` → Settings):
 1. **Bindings → Add → D1 database**: variable name `DB`, database `xs-orders`. Redeploy.
-2. Optional: **Variables and Secrets** → add `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID` as secrets (use a *new* bot token).
+2. Optional: **Variables and Secrets** → add `TG_BOT_TOKEN` and `TG_CHAT_ID` as secrets (use a *new* bot token).
 3. Only after step 1 is live, set `orderEndpoint: "/api/order"` in `assets/js/config.js` and commit. Setting it before the binding exists makes every order fail with 503. See [`docs/operator-guide.md`](docs/operator-guide.md).
 
 Read orders with `SELECT * FROM orders ORDER BY created_at DESC;` in the D1 console, or with `wrangler d1 execute xs-orders --remote --command "..."`. The `--remote` flag is required, because without it the CLI reads a local copy. For how to read and handle orders, see [`docs/operator-guide.md`](docs/operator-guide.md).
