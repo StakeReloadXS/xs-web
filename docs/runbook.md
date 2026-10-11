@@ -15,7 +15,7 @@ Production runs on Cloudflare Pages (project `xs-web`) for `stakereloadxs.com` a
 
 | Repository secret | Used as | Purpose |
 |---|---|---|
-| `CLOUDFLARE_TOKEN` | `CLOUDFLARE_API_TOKEN` | Pages deploy token |
+| `CF_DEPLOY_TOKEN` | `CLOUDFLARE_API_TOKEN` | Pages deploy token |
 | `CF_ACCOUNT_ID` | `CLOUDFLARE_ACCOUNT_ID` | Cloudflare account |
 
 ## 2. Apex DNS fix (manual)
@@ -29,11 +29,15 @@ Production runs on Cloudflare Pages (project `xs-web`) for `stakereloadxs.com` a
 
 | Repository secret | Mapped to env var | Purpose |
 |---|---|---|
-| `CLOUDFLARE_TOKEN` | `CF_TOKEN` | API token with Zone DNS Edit and Pages Edit |
+| `CF_DEPLOY_TOKEN` | `CF_TOKEN` | API token with Zone DNS Edit and Pages Edit |
 | `CF_ACCOUNT_ID` | `CF_ACCOUNT_ID` | Cloudflare account |
 | `CF_ZONE_ID` | `CF_ZONE_ID` | Zone for `stakereloadxs.com` |
 
-The script expects `CF_TOKEN`, not `CLOUDFLARE_TOKEN`. The mapping lives in the workflow `env:` block. Keep it there when editing either file.
+The script expects `CF_TOKEN`, not `CF_DEPLOY_TOKEN`. The mapping lives in the workflow `env:` block. Keep it there when editing either file.
+
+**Naming:** Cloudflare API tokens use the `CF_` prefix. Deploy tokens are `CF_DEPLOY_TOKEN`; read-only checks use `CF_VERIFY_TOKEN`. Account and zone IDs are `CF_ACCOUNT_ID` and `CF_ZONE_ID`. `CLOUDFLARE_API_TOKEN` is the name the Wrangler CLI reads for local use, so it stays as the environment variable in the deploy step.
+
+> **Until the rename lands:** the workflows still read the GitHub secret `CLOUDFLARE_TOKEN`. Rename the repository secret to `CF_DEPLOY_TOKEN` and update `deploy-cloudflare.yml` and `cloudflare-fix-apex.yml` together. Do not rename one without the other.
 
 ## 3. Order intake settings (Pages dashboard)
 
