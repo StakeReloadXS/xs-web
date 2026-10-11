@@ -175,3 +175,13 @@ pre.summary { background: var(--surface-2); border-radius: var(--radius); paddin
 .policy h2 { margin-top: 2rem; font-size: 1.25rem; }
 .policy table { width: 100%; border-collapse: collapse; margin-top: 0.5rem; }
 .policy th, .policy td { text-align: left; padding: 0.5rem; border-bottom: 1px solid var(--line); }
+
+/* Expanding help launcher (assets/js/layout.js). Bottom-left keeps clear of the tawk.to bubble. */
+.chat-widget { position: fixed; left: 1rem; bottom: calc(1rem + env(safe-area-inset-bottom)); z-index: 50; display: flex; flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+.chat-toggle { min-height: var(--tap); min-width: var(--tap); padding: 0 1rem; border: 0; border-radius: 999px; background: var(--accent-strong); color: #fff; font: inherit; font-weight: 600; cursor: pointer; box-shadow: 0 4px 16px rgb(0 0 0 / 0.4); }
+.chat-toggle:hover { background: var(--accent); }
+.chat-panel { background: var(--surface); border: 1px solid var(--surface-2); border-radius: var(--radius); padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; width: min(16rem, calc(100vw - 2rem)); box-shadow: 0 8px 24px rgb(0 0 0 / 0.5); }
+.chat-panel[hidden] { display: none; }
+.chat-lead { margin: 0 0 0.25rem; color: var(--muted); font-size: 0.9rem; }
+.chat-panel .btn { width: 100%; justify-content: center; }
+.chat-live:disabled { opacity: 0.5; cursor: not-allowed; }

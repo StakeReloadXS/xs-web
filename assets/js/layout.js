@@ -50,8 +50,40 @@
     if (window.XS_REFRESH_CART) window.XS_REFRESH_CART();
   });
 
+  // Expanding help launcher. Shares the live chat widget with tawk.to below.
+  document.addEventListener("DOMContentLoaded", function () {
+    var wrap = document.createElement("div");
+    wrap.className = "chat-widget";
+    wrap.innerHTML =
+      '<button class="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel">Help</button>' +
+      '<div class="chat-panel" id="chat-panel" hidden>' +
+      '<p class="chat-lead">How would you like to reach us?</p>' +
+      '<button class="btn chat-live" type="button" disabled>Live chat</button>' +
+      '<a class="btn btn-ghost" href="https://t.me/supitsj" rel="noopener">Telegram</a>' +
+      "</div>";
+    document.body.appendChild(wrap);
+
+    var toggle = wrap.querySelector(".chat-toggle"), panel = wrap.querySelector(".chat-panel"), live = wrap.querySelector(".chat-live");
+    var set = function (open) {
+      panel.hidden = !open;
+      toggle.setAttribute("aria-expanded", open ? "true" : "false");
+      if (open) (live.disabled ? panel.querySelector("a") : live).focus();
+    };
+    toggle.addEventListener("click", function () { set(panel.hidden); });
+    document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { set(false); toggle.focus(); } });
+    document.addEventListener("click", function (e) { if (!panel.hidden && !wrap.contains(e.target)) set(false); });
+    live.addEventListener("click", function () {
+      var api = window.Tawk_API;
+      if (api && typeof api.maximize === "function") api.maximize();
+      set(false);
+    });
+    if (window.XS_CHAT_LOADED) live.disabled = false;
+    window.XS_CHAT_READY = function () { live.disabled = false; };
+  });
+
   // Live chat widget (unchanged from the previous site)
   var Tawk_API = window.Tawk_API = window.Tawk_API || {};
+  Tawk_API.onLoad = function () { window.XS_CHAT_LOADED = true; if (window.XS_CHAT_READY) window.XS_CHAT_READY(); };
   var s = document.createElement("script");
   s.async = true; s.src = "https://embed.tawk.to/68013ff53e654c19146b2db9/1ip2e3m7d"; s.charset = "UTF-8"; s.setAttribute("crossorigin", "*");
   document.head.appendChild(s);
