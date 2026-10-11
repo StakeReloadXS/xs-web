@@ -9,6 +9,8 @@ Static storefront hosted on Cloudflare Pages (project `xs-web`, domain `stakerel
 - Deploy: pushes to `main` publish to Cloudflare Pages via `.github/workflows/deploy-cloudflare.yml`. See [`docs/runbook.md`](docs/runbook.md) for the deploy, DNS fix and secret names.
 - `CNAME` is a leftover from the GitHub Pages setup and is not used by the Cloudflare deploy.
 
+Product guides for the XS family (issue #42): [`docs/product-guides.md`](docs/product-guides.md).
+
 Preview locally: `python3 -m http.server` and open http://localhost:8000.
 
 ## Layout tests
