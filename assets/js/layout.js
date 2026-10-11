@@ -58,7 +58,8 @@
       '<button class="chat-toggle" type="button" aria-expanded="false" aria-controls="chat-panel">Help</button>' +
       '<div class="chat-panel" id="chat-panel" hidden>' +
       '<p class="chat-lead">How would you like to reach us?</p>' +
-      '<button class="btn chat-live" type="button" disabled>Live chat</button>' +
+      '<button class="btn chat-live" type="button">Live chat</button>' +
+      '<p class="chat-status" role="status"></p>' +
       '<a class="btn btn-ghost" href="https://t.me/supitsj" rel="noopener">Telegram</a>' +
       "</div>";
     document.body.appendChild(wrap);
@@ -72,18 +73,22 @@
     toggle.addEventListener("click", function () { set(panel.hidden); });
     document.addEventListener("keydown", function (e) { if (e.key === "Escape" && !panel.hidden) { set(false); toggle.focus(); } });
     document.addEventListener("click", function (e) { if (!panel.hidden && !wrap.contains(e.target)) set(false); });
+    var status = wrap.querySelector(".chat-status");
     live.addEventListener("click", function () {
       var api = window.Tawk_API;
-      if (api && typeof api.maximize === "function") api.maximize();
-      set(false);
+      if (window.XS_CHAT_LOADED && api && typeof api.maximize === "function") {
+        status.textContent = "";
+        api.maximize();
+        set(false);
+      } else {
+        status.textContent = "Live chat is not available right now. Please use Telegram instead.";
+      }
     });
-    if (window.XS_CHAT_LOADED) live.disabled = false;
-    window.XS_CHAT_READY = function () { live.disabled = false; };
   });
 
   // Live chat widget (unchanged from the previous site)
   var Tawk_API = window.Tawk_API = window.Tawk_API || {};
-  Tawk_API.onLoad = function () { window.XS_CHAT_LOADED = true; if (window.XS_CHAT_READY) window.XS_CHAT_READY(); };
+  Tawk_API.onLoad = function () { window.XS_CHAT_LOADED = true; };
   var s = document.createElement("script");
   s.async = true; s.src = "https://embed.tawk.to/68013ff53e654c19146b2db9/1ip2e3m7d"; s.charset = "UTF-8"; s.setAttribute("crossorigin", "*");
   document.head.appendChild(s);
