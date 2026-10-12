@@ -258,7 +258,7 @@ textarea.input { resize: vertical; }
   padding: clamp(1.25rem, 3vw, 1.75rem); display: flex; flex-direction: column; text-align: left; min-width: 0;
   transition: border-color 0.25s var(--ease), transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-.card:hover { border-color: rgb(220 38 38 / 0.45); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+@media (hover: hover) { .card:hover { border-color: rgb(220 38 38 / 0.45); transform: translateY(-2px); box-shadow: var(--shadow-md); } } /* touch taps do not leave the lift stuck */
 .card .btn { margin-top: auto; }
 .card p:last-of-type { margin-bottom: 1.5rem; }
 .card img.icon { width: 3rem; height: 3rem; margin-bottom: 1rem; }
