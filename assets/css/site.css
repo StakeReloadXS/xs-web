@@ -26,6 +26,113 @@
   --shadow-md: 0 12px 32px rgb(0 0 0 / 0.5);
   --ease: cubic-bezier(0.2, 0.7, 0.2, 1);
   --font: Poppins, Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+
+  /* ---- Administrator (--admin-*) design tokens -------------------------------------
+     Contract for future operations screens. Lives here in site.css, the single source of
+     truth, and is not yet used by any selector, so existing pages render exactly as before.
+     Reuse brand tokens where they fit; new literal values exist only where the brand
+     value fails a contrast requirement. Every text, badge, border and focus pair is
+     contrast-tested (WCAG 2.x). Targets: text 4.5:1, UI boundaries and focus 3:1.
+     Rules: never use --admin-accent for small text (it is 3.9:1 on surface); controls are
+     at least --admin-control-h (44px); colour is never the only state signal.
+
+     Surfaces and content: canvas is the page, surface is panels and tables, surface-raised
+     is popovers and nested panels. Measured ratios for every pair are in design-tokens/README.md.
+     Brand and focus: accent is for fills, icons and the selected bar. on-accent is the
+     label on accent fills. focus-ring is a 2px white ring, the same as the storefront
+     :focus-visible rule.
+     Semantic feedback: each state has a -text (on -bg), a -bg and a -border. Badges use the
+     -text/-bg pair. -border is for outlines and for icons on the surface. success uses the
+     brand --ok for icons; the text pair is separate because --ok on canvas is only for fills.
+     Layout and density: spacing is a 4px-based scale. Widths and heights are fixed tokens;
+     the density block below changes row height at the 900px breakpoint.
+     Shape and layering: radius and shadows reuse brand values. z-index levels are ordered
+     from base to toast; overlay is the scrim behind modals.
+     Interaction: hover, selected, disabled and loading states each have their own
+     background and text. Disabled text is listed as the one pair where WCAG 1.4.3 exempts
+     inactive controls; it is still tested. Reduced motion sets durations to 0 (see below). */
+  --admin-canvas: var(--bg);
+  --admin-surface: var(--surface);
+  --admin-surface-raised: var(--surface-2);
+  --admin-border: var(--line);
+  --admin-border-strong: var(--line-strong);
+  --admin-control-border: #6b6b6b; /* 3:1 on canvas, surface and surface-raised; --line-strong does not reach 3:1 */
+  --admin-text: var(--text);
+  --admin-text-muted: var(--muted);
+
+  --admin-accent: var(--accent);
+  --admin-accent-strong: var(--accent-strong);
+  --admin-on-accent: #fff; /* 4.8:1 on accent, 6.5:1 on accent-strong */
+  --admin-focus-ring: #fff; /* 21:1 on canvas */
+  --admin-focus-width: 2px;
+  --admin-focus-offset: 3px;
+
+  --admin-success-text: #86efac;
+  --admin-success-bg: #0f2a1a;
+  --admin-success-border: #2f8f4f;
+  --admin-success-icon: var(--ok);
+  --admin-warning-text: #fcd34d;
+  --admin-warning-bg: #2b2008;
+  --admin-warning-border: #b07a12;
+  --admin-danger-text: #fca5a5;
+  --admin-danger-bg: #2c0f10;
+  --admin-danger-border: #c43d3d;
+  --admin-info-text: #93c5fd;
+  --admin-info-bg: #0c1d33;
+  --admin-info-border: #3b6fd1;
+  --admin-neutral-text: #d4d4d4;
+  --admin-neutral-bg: var(--surface-2);
+  --admin-neutral-border: var(--admin-control-border);
+
+  --admin-space-1: 0.25rem;
+  --admin-space-2: 0.5rem;
+  --admin-space-3: 0.75rem;
+  --admin-space-4: 1rem;
+  --admin-space-5: 1.5rem;
+  --admin-space-6: 2rem;
+  --admin-space-7: 3rem;
+  --admin-content-max: 90rem; /* wider than --max (70rem) for tables */
+  --admin-sidebar-w: min(18rem, 85vw); /* narrow screens: off-canvas drawer */
+  --admin-header-h: var(--header-h);
+  --admin-row-h: 3rem; /* narrow: 48px rows, touch-friendly */
+  --admin-control-h: var(--tap); /* 44px minimum for every control */
+
+  --admin-radius-sm: 0.25rem;
+  --admin-radius: var(--radius);
+  --admin-radius-lg: var(--radius-lg);
+  --admin-shadow-1: var(--shadow-sm);
+  --admin-shadow-2: var(--shadow-md);
+  --admin-overlay: rgb(0 0 0 / 0.7);
+  --admin-z-base: 0;
+  --admin-z-sticky: 10;
+  --admin-z-header: 20;
+  --admin-z-dropdown: 30;
+  --admin-z-overlay: 40;
+  --admin-z-modal: 50;
+  --admin-z-toast: 60;
+
+  --admin-hover-bg: var(--surface-hover);
+  --admin-selected-bg: #2a1214; /* text 16:1; the accent bar on it is 3.6:1 */
+  --admin-selected-bar: var(--accent);
+  --admin-disabled-bg: #161616;
+  --admin-disabled-text: #7a7a7a; /* 4.2:1 on disabled-bg */
+  --admin-disabled-border: var(--line);
+  --admin-loading-bg: var(--surface-2);
+  --admin-loading-highlight: var(--surface-hover); /* decorative skeleton shimmer only */
+  --admin-duration-fast: 120ms;
+  --admin-duration: 200ms;
+  --admin-ease: var(--ease);
+}
+
+/* Admin density: taller rows at desktop widths, same 900px breakpoint as the nav. */
+@media (min-width: 56.25em) { /* 900px */
+  :root { --admin-row-h: 2.75rem; --admin-sidebar-w: 15rem; }
+}
+
+/* Reduced motion: durations go to 0. Loading states must still show a static text label
+   (not only a spinner) so the state is visible without animation. */
+@media (prefers-reduced-motion: reduce) {
+  :root { --admin-duration-fast: 0ms; --admin-duration: 0ms; }
 }
 
 *, *::before, *::after { box-sizing: border-box; }
