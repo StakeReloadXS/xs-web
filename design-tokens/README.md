@@ -1,6 +1,6 @@
 # Design tokens
 
-Tokens taken from `assets/css/site.css` for the modern stack. Wherever `site.css` `:root` defines a token, the value here is identical. The site's names differ from these: `site.css` uses `--accent`, this folder uses `--color-accent`. The static site still uses its own stylesheet, and this folder does not change it. Note that `site.css` is restyled on the same branch as this folder, and `assets/` is published, so merging that branch changes the live site.
+Tokens taken from `assets/css/site.css` for the modern stack. Wherever `site.css` `:root` defines a token, the value here is identical. The site's names differ from these: `site.css` uses `--accent`, this folder uses `--color-accent`. The static site still uses its own stylesheet, and this folder does not change it. The `site.css` visual refresh is a separate PR, so this folder changes nothing live.
 
 The `payment-*` color tokens exist only here. They have no `site.css` counterpart and are provisional until the design is approved. Use them for non-text fills and borders only. Text in a payment-required CTA uses `on-accent`.
 
