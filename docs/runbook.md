@@ -33,7 +33,11 @@ Production runs on Cloudflare Pages (project `xs-web`) for `stakereloadxs.com` a
 | `CF_ACCOUNT_ID` | `CF_ACCOUNT_ID` | Cloudflare account |
 | `CF_ZONE_ID` | `CF_ZONE_ID` | Zone for `stakereloadxs.com` |
 
-The script expects `CF_TOKEN`, not `CLOUDFLARE_TOKEN`. The mapping lives in the workflow `env:` block. Keep it there when editing either file.
+The script reads the env var `CF_TOKEN`. The workflow `env:` block maps it from the `CLOUDFLARE_TOKEN` secret. Keep that mapping there when editing either file.
+
+**Naming:** Cloudflare API tokens use the `CF_` prefix. The planned deploy token name is `CF_DEPLOY_TOKEN` (see the note below); no read-only token is defined yet. Account and zone IDs are `CF_ACCOUNT_ID` and `CF_ZONE_ID`. `CLOUDFLARE_API_TOKEN` is the name the Wrangler CLI reads for local use, so it stays as the environment variable in the deploy step.
+
+> **Until the rename lands:** the workflows still read the GitHub secret `CLOUDFLARE_TOKEN`. Rename the repository secret to `CF_DEPLOY_TOKEN` and update `deploy-cloudflare.yml` and `cloudflare-fix-apex.yml` together. Do not rename one without the other.
 
 ## 3. Order intake settings (Pages dashboard)
 
