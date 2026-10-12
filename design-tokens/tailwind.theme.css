@@ -1,8 +1,11 @@
 /* StakeReloadXS theme for Tailwind CSS v4 (generated from tokens.json).
-   Usage in a React/Vite app:
+   This file lives at design-tokens/tailwind.theme.css in this repo. Import it from your app's
+   CSS entry, using a path relative to that file. From a CSS file at the repo root:
      @import "tailwindcss";
-     @import "./tokens/tailwind.theme.css";
-   Utilities then exist as bg-surface, text-muted, border-line, rounded-theme, max-w-container, etc. */
+     @import "./design-tokens/tailwind.theme.css";
+   In a Vite app that copies this folder into src/, use "./design-tokens/tailwind.theme.css" from src/index.css.
+   Utilities then exist as bg-surface, text-muted, border-line, rounded-theme, max-w-container, etc.
+   size.logo, size.icon-nav and size.chat-panel are component sizes and are not mapped here. */
 @theme {
   --color-bg: #000000;
   --color-surface: #111111;
@@ -16,6 +19,8 @@
   --color-accent-strong: #b91c1c;
   --color-accent-glow: rgba(220, 38, 38, 0.28);
   --color-ok: #22c55e;
+  --color-shadow: rgba(0, 0, 0, 0.5);
+  --color-focus: #ffffff;
 
   --font-sans: Poppins, Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, monospace;
