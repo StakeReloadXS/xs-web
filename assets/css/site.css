@@ -203,6 +203,8 @@ p { margin: 0 0 1rem; overflow-wrap: anywhere; text-wrap: pretty; }
 .nav-toggle svg { width: 1.5rem; height: 1.5rem; }
 .site-nav { display: none; position: absolute; left: 0; right: 0; top: 100%; background: rgb(0 0 0 / 0.96); border-bottom: 1px solid var(--line); box-shadow: var(--shadow-md); padding: 0.5rem var(--gutter) 1rem; max-height: calc(100dvh - var(--header-h)); overflow-y: auto; }
 .site-nav.open { display: block; }
+/* While the mobile menu is open, lift the header above the fixed chat launcher so it cannot cover menu items. */
+.site-header:has(.site-nav.open) { z-index: 60; }
 .site-nav ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; }
 .site-nav a { display: flex; align-items: center; min-height: var(--tap); padding: 0 0.25rem; text-decoration: none; color: var(--muted); border-bottom: 1px solid var(--line); transition: color 0.2s var(--ease); }
 .site-nav a:hover { color: var(--text); }
