@@ -80,7 +80,7 @@ test("503 when the D1 binding is missing, 500 when the insert fails, 405 for oth
 });
 
 test("Telegram notification is best effort", async () => {
-  const { onRequestPost } = await load(); const e = { ...env(), TELEGRAM_BOT_TOKEN: "t", TELEGRAM_CHAT_ID: "1" };
+  const { onRequestPost } = await load(); const e = { ...env(), TG_BOT_TOKEN: "t", TG_CHAT_ID: "1" };
   const orig = global.fetch; let sent;
   global.fetch = async (url, init) => { sent = { url, body: JSON.parse(init.body) }; throw new Error("network down"); };
   try {
