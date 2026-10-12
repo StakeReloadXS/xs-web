@@ -1,5 +1,5 @@
 // Cloudflare Pages Function: POST /api/order
-// Stores the order in D1 (binding: DB) and optionally pings Telegram (secrets: TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID).
+// Stores the order in D1 (binding: DB) and optionally pings Telegram (secrets: TG_BOT_TOKEN, TG_CHAT_ID).
 // Prices are always recomputed from /data/products.json; the client's totals are ignored.
 
 const json = (body, status = 200) =>
@@ -51,13 +51,13 @@ export async function onRequestPost({ request, env }) {
     return json({ ok: false, error: "could not save order" }, 500);
   }
 
-  if (env.TELEGRAM_BOT_TOKEN && env.TELEGRAM_CHAT_ID) {
+  if (env.TG_BOT_TOKEN && env.TG_CHAT_ID) {
     const text = `New order ${reference}\n` + items.map((i) => `${i.quantity} x ${i.name}`).join("\n") +
       `\nTotal: $${total.toFixed(2)}` + (boost ? ` (boost ${boost}%)` : "") +
       `\n${name}\n${contactMethod}: ${contact}` + (notes ? `\nNotes: ${notes}` : "");
     try {
-      await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
-        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text })
+      await fetch(`https://api.telegram.org/bot${env.TG_BOT_TOKEN}/sendMessage`, {
+        method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ chat_id: env.TG_CHAT_ID, text })
       });
     } catch { /* order is saved; notification is best effort */ }
   }

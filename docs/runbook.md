@@ -33,14 +33,18 @@ Production runs on Cloudflare Pages (project `xs-web`) for `stakereloadxs.com` a
 | `CF_ACCOUNT_ID` | `CF_ACCOUNT_ID` | Cloudflare account |
 | `CF_ZONE_ID` | `CF_ZONE_ID` | Zone for `stakereloadxs.com` |
 
-The script expects `CF_TOKEN`, not `CLOUDFLARE_TOKEN`. The mapping lives in the workflow `env:` block. Keep it there when editing either file.
+The script reads the env var `CF_TOKEN`. The workflow `env:` block maps it from the `CLOUDFLARE_TOKEN` secret. Keep that mapping there when editing either file.
+
+**Naming:** Cloudflare API tokens use the `CF_` prefix. The planned deploy token name is `CF_DEPLOY_TOKEN` (see the note below); no read-only token is defined yet. Account and zone IDs are `CF_ACCOUNT_ID` and `CF_ZONE_ID`. `CLOUDFLARE_API_TOKEN` is the name the Wrangler CLI reads for local use, so it stays as the environment variable in the deploy step.
+
+> **Until the rename lands:** the workflows still read the GitHub secret `CLOUDFLARE_TOKEN`. Rename the repository secret to `CF_DEPLOY_TOKEN` and update `deploy-cloudflare.yml` and `cloudflare-fix-apex.yml` together. Do not rename one without the other.
 
 ## 3. Order intake settings (Pages dashboard)
 
 Workers & Pages → `xs-web` → Settings:
 
 1. **Bindings → D1 database:** variable `DB`, database `xs-orders`. Redeploy after adding.
-2. **Variables and Secrets (optional):** `TELEGRAM_BOT_TOKEN` and `TELEGRAM_CHAT_ID`. Use a bot token that has not been shared before. Telegram alerts are best effort; the order is saved first.
+2. **Variables and Secrets (optional):** `TG_BOT_TOKEN` and `TG_CHAT_ID`. Use a bot token that has not been shared before. Telegram alerts are best effort; the order is saved first.
 
 No secret values belong in the repo or in this document.
 
