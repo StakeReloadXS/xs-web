@@ -1,4 +1,4 @@
-/* StakeReloadXS design tokens (CSS output of tokens.json).
+/* StakeReloadXS design tokens (hand-maintained mirror of tokens.json).
    Modern-stack ready: cascade layers, custom properties, clamp(), svh/dvh.
    Drop into a React/Vite app as: @import "./tokens.css"; or import it from main.tsx.
    Breakpoint in use: @media (min-width: 56.25em) (900px) for the inline nav. */
