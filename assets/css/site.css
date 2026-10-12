@@ -268,7 +268,7 @@ textarea.input { resize: vertical; }
   background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius-lg);
   padding: 1.25rem 1.5rem; text-align: center; min-width: 0;
 }
-.stat strong { display: block; font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 600; letter-spacing: -0.02em; line-height: 1.1; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 0.35rem; }
+.stat strong { display: block; font-size: clamp(1.75rem, 3vw + 0.5rem, 2.5rem); font-weight: 700; letter-spacing: -0.02em; line-height: 1.1; color: var(--accent); font-variant-numeric: tabular-nums; margin-bottom: 0.35rem; }
 .stat span { font-size: 0.9375rem; }
 
 /* Hero: min-height (never fixed) so short landscape screens never clip content.
