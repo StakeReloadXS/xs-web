@@ -23,13 +23,18 @@
       '<nav class="site-nav" id="site-nav" aria-label="Main"><ul>' + items + "</ul></nav></div>";
   }
 
+  // One footer group. Collapsible on small screens; the script opens every group on wide screens.
+  function group(title, items) {
+    return '<details class="footer-group" open><summary><h4>' + title + '</h4></summary><ul>' + items + "</ul></details>";
+  }
+
   function footer() {
     return '<div class="container"><div class="footer-grid">' +
-      '<div><h4>StakeReloadXS</h4><p class="muted">A small team of web3 developers building simple, fast reload automation.</p></div>' +
-      '<div><h4>Shop</h4><ul><li><a href="/products.html">Credits &amp; services</a></li><li><a href="/offers.html">Signup offers</a></li><li><a href="/order.html">Your order</a></li></ul></div>' +
-      '<div><h4>Help</h4><ul><li><a href="/support.html">Support</a></li><li><a href="/team.html">Team</a></li></ul></div>' +
-      '<div><h4>Legal</h4><ul><li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/refund.html">Refund Policy</a></li><li><a href="/terms.html">Terms of Use</a></li></ul></div>' +
-      '<div><h4>Socials</h4><ul><li><a href="https://x.com/ReloadedXS"><img class=\"social-icon\" src=\"/assets/img/social/twitter.svg\" alt=\"\" width=\"18\" height=\"18\">X (Twitter)</a></li><li><a href="https://github.com/StakeReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/github.svg\" alt=\"\" width=\"18\" height=\"18\">GitHub</a></li><li><a href="https://t.me/StakeReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Channel</a></li><li><a href="https://t.me/ReloadXS"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Group</a></li><li><a href="https://t.me/StakeAssistBot"><img class=\"social-icon\" src=\"/assets/img/social/telegram.svg\" alt=\"\" width=\"18\" height=\"18\">Telegram Bot</a></li><li><a href="https://dsc.gg/stakereloadxs"><img class=\"social-icon\" src=\"/assets/img/social/discord.svg\" alt=\"\" width=\"18\" height=\"18\">Discord</a></li><li><a href="https://www.linkedin.com/posts/stakereloadxs_stakereloadxs-xtremely-simple-reloads-activity-7317202258264240129-XMmY"><img class=\"social-icon\" src=\"/assets/img/social/linkedin.svg\" alt=\"\" width=\"18\" height=\"18\">LinkedIn</a></li></ul></div>' +
+      '<div class="footer-brand"><h4>StakeReloadXS</h4><p class="muted">A small team of web3 developers building simple, fast reload automation.</p></div>' +
+      group("Shop", '<li><a href="/products.html">Credits &amp; services</a></li><li><a href="/offers.html">Signup offers</a></li><li><a href="/order.html">Your order</a></li>') +
+      group("Help", '<li><a href="/support.html">Support</a></li><li><a href="/team.html">Team</a></li>') +
+      group("Legal", '<li><a href="/privacy.html">Privacy Policy</a></li><li><a href="/refund.html">Refund Policy</a></li><li><a href="/terms.html">Terms of Use</a></li>') +
+      group("Socials", '<li><a href="https://x.com/ReloadedXS"><img class="social-icon" src="/assets/img/social/twitter.svg" alt="" width="18" height="18">X (Twitter)</a></li><li><a href="https://github.com/StakeReloadXS"><img class="social-icon" src="/assets/img/social/github.svg" alt="" width="18" height="18">GitHub</a></li><li><a href="https://t.me/StakeReloadXS"><img class="social-icon" src="/assets/img/social/telegram.svg" alt="" width="18" height="18">Telegram Channel</a></li><li><a href="https://t.me/ReloadXS"><img class="social-icon" src="/assets/img/social/telegram.svg" alt="" width="18" height="18">Telegram Group</a></li><li><a href="https://t.me/StakeAssistBot"><img class="social-icon" src="/assets/img/social/telegram.svg" alt="" width="18" height="18">Telegram Bot</a></li><li><a href="https://dsc.gg/stakereloadxs"><img class="social-icon" src="/assets/img/social/discord.svg" alt="" width="18" height="18">Discord</a></li><li><a href="https://www.linkedin.com/posts/stakereloadxs_stakereloadxs-xtremely-simple-reloads-activity-7317202258264240129-XMmY"><img class="social-icon" src="/assets/img/social/linkedin.svg" alt="" width="18" height="18">LinkedIn</a></li>') +
       '</div><p class="copyright">2025 &copy; All Rights Reserved | StakeReloadXS</p></div>';
   }
 
@@ -37,7 +42,19 @@
     var h = document.querySelector("[data-site-header]");
     var f = document.querySelector("[data-site-footer]");
     if (h) { h.className = "site-header"; h.innerHTML = header(); }
-    if (f) { f.className = "site-footer"; f.innerHTML = footer(); }
+    if (f) {
+      f.className = "site-footer"; f.innerHTML = footer();
+      // Below the nav breakpoint, groups start collapsed. Wide screens keep them open and not toggleable.
+      var wide = window.matchMedia("(min-width: 56.25em)");
+      var syncFooterGroups = function () {
+        f.querySelectorAll(".footer-group").forEach(function (d) {
+          d.open = wide.matches;
+          d.querySelector("summary").tabIndex = wide.matches ? -1 : 0;
+        });
+      };
+      syncFooterGroups();
+      if (wide.addEventListener) wide.addEventListener("change", syncFooterGroups); else wide.addListener(syncFooterGroups);
+    }
 
     var btn = document.querySelector(".nav-toggle"), nav = document.getElementById("site-nav");
     if (btn && nav) {
