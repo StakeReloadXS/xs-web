@@ -80,6 +80,8 @@
     var boostEl = root.querySelector("[data-boost]");
     var byId = {};
     var tiers = [];
+    var payBtn = root.querySelector("[data-pay-now]");
+    if (payBtn && !cfg.checkoutEnabled) payBtn = null;
 
     function draw() {
       var cart = loadCart(), total = 0, ids = Object.keys(cart).filter(function (id) { return byId[id]; });
@@ -88,9 +90,11 @@
         totalEl.textContent = money(0);
         if (boostEl) boostEl.textContent = "";
         form.querySelector("[type=submit]").disabled = true;
+        if (payBtn) { payBtn.disabled = true; payBtn.removeAttribute("hidden"); }
         return;
       }
       form.querySelector("[type=submit]").disabled = false;
+      if (payBtn) { payBtn.disabled = false; payBtn.removeAttribute("hidden"); }
       list.innerHTML = ids.map(function (id) {
         var p = byId[id], q = cart[id]; total += p.price * q;
         return '<div class="line"><div><div>' + esc(p.name) + '</div><div class="muted">' + money(p.price) + ' each</div></div>' +
@@ -139,6 +143,35 @@
         done(); // no endpoint configured: success page offers the Telegram handoff
       }
     });
+
+    if (payBtn) {
+      // Opens a hosted checkout for the cart. The cart is kept until payment is confirmed, so a cancelled
+      // checkout leaves the order in place. No order is written to D1 or Telegram on this path.
+      payBtn.addEventListener("click", function () {
+        if (!form.reportValidity()) return;
+        var cart = loadCart();
+        var items = Object.keys(cart).filter(function (id) { return byId[id]; }).map(function (id) {
+          return { id: id, quantity: cart[id] };
+        });
+        if (!items.length) return;
+        payBtn.disabled = true;
+        status.textContent = "Opening checkout…";
+        fetch("/api/payment/create", {
+          method: "POST",
+          headers: { "Content-Type": "application/json", "Accept": "application/json" },
+          body: JSON.stringify({ reference: makeRef(), items: items })
+        })
+          .then(function (r) { return r.json().catch(function () { return {}; }).then(function (d) { return { ok: r.ok, d: d }; }); })
+          .then(function (res) {
+            if (!res.ok || !res.d.payUrl) throw new Error("checkout");
+            window.location.href = res.d.payUrl;
+          })
+          .catch(function () {
+            payBtn.disabled = false;
+            status.textContent = "Checkout is unavailable right now. Submit your order instead, or contact us on Telegram.";
+          });
+      });
+    }
 
     getCatalog().then(function (catalog) { catalog.products.forEach(function (p) { byId[p.id] = p; }); tiers = catalog.boostTiers || []; draw(); });
   }

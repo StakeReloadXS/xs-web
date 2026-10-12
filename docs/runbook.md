@@ -48,6 +48,15 @@ Workers & Pages → `xs-web` → Settings:
 
 No secret values belong in the repo or in this document.
 
+### Hosted checkout (CCPayment, sandbox first)
+
+Workers & Pages → `xs-web` → Settings → Variables and Secrets. Names only; values come from the CCPayment dashboard:
+
+- `CCPAYMENT_APP_ID` (secret) and `CCPAYMENT_APP_SECRET` (secret): merchant credentials. Use sandbox credentials until the provider call is confirmed.
+- `CCPAYMENT_API_BASE` (variable): the https base URL of the API. There is no default, so `POST /api/payment/create` returns 503 until it is set.
+
+The button on `order.html` also needs `checkoutEnabled: true` in `assets/js/config.js`. Leave it `false` until a sandbox order completes end to end. Placeholder names are in `.env.example`.
+
 ## 4. Verifying a deploy
 
 1. Check the workflow run is green in the Actions tab.
