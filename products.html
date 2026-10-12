@@ -41,15 +41,29 @@
   <a class="skip-link" href="#main">Skip to content</a>
   <header data-site-header></header>
   <main id="main">
-    <section class="hero hero-compact">
+    <section class="hero hero-compact products-hero">
       <div class="container">
-        <h1>Boost Your Deposit</h1>
-        <p class="lead">Make your money go further! Add items, then review your order.</p>
-        <p class="muted">Boost is set by your order total. Items in one order combine toward a tier.</p>
-        <ul class="muted" data-boost-tiers style="margin:0.5rem 0 0; padding-left:1.25rem"></ul>
+        <div class="products-hero-grid">
+          <div class="products-hero-copy">
+            <p class="products-eyebrow">STAKE RELOAD XS <span aria-hidden="true">/</span> SHOP</p>
+            <h1>Make every reload count.</h1>
+            <p class="lead">Choose XS credits or account services, then build your order. Items in one order combine toward the same boost tier.</p>
+            <div class="btn-row products-hero-actions">
+              <a class="btn" href="#product-grid">Explore products</a>
+              <a class="btn btn-ghost" href="/order.html">Review order (<span data-cart-count>0</span>)</a>
+            </div>
+            <p class="products-hero-note">Clear pricing. One order total. Your boost is calculated at checkout.</p>
+          </div>
+          <aside class="products-boost-card" aria-labelledby="products-boost-title">
+            <p class="products-boost-label">ORDER BOOST</p>
+            <h2 id="products-boost-title">More in your order.<br>More boost potential.</h2>
+            <p class="muted">Reach a tier with your combined order total.</p>
+            <ul class="products-boost-tiers muted" data-boost-tiers></ul>
+          </aside>
+        </div>
       </div>
     </section>
-    <section class="section" style="padding-top:0">
+    <section class="section" id="catalog" style="padding-top:0">
       <div class="container">
         <div id="product-grid" class="grid"></div>
         <p class="center" style="margin-top:2rem"><a class="btn" href="/order.html">Review order (<span data-cart-count>0</span>)</a></p>
