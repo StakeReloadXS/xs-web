@@ -5,5 +5,7 @@ window.XS_CONFIG = {
   orderEndpoint: "",
   // Hosted checkout / payment link shown on success.html (e.g. a NOWPayments or CCPayment payment link). Optional.
   paymentLink: "",
+  // Shows the "Pay now" button on order.html. Keep false until POST /api/payment/create is confirmed in sandbox.
+  checkoutEnabled: false,
   telegram: "supitsj"
 };
