@@ -276,3 +276,5 @@ pre.summary { background: var(--surface-2); border: 1px solid var(--line); borde
 .products-hero h1 { max-width: 14ch; margin-inline: auto; margin-bottom: 1rem; }
 .products-hero .lead { margin-inline: auto; }
 .products-hero-note { color: var(--muted); font-size: 0.875rem; margin: 1rem 0 0; }
+/* Boost line on product cards. Text colour, not accent, so it stays readable at small size. */
+.boost-note { color: var(--text); font-size: 0.9375rem; margin: 0 0 1rem; }

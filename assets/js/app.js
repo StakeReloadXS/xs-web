@@ -32,6 +32,15 @@
     (tiers || []).forEach(function (t) { if (total >= t.minTotal && t.percent > pct) pct = t.percent; });
     return pct;
   }
+  // Boost commentary for one product: the tier it reaches on its own, and the amount to add for the next tier.
+  function boostNote(price, tiers) {
+    var sorted = (tiers || []).slice().sort(function (a, b) { return a.minTotal - b.minTotal; });
+    var now = boostFor(price, sorted);
+    var next = sorted.filter(function (t) { return t.minTotal > price; })[0];
+    if (!next) return now ? "Alone: " + now + "% boost, the top tier." : "";
+    if (now) return "Alone: " + now + "% boost. Add " + money(next.minTotal - price) + " more for " + next.percent + "%.";
+    return "Add " + money(next.minTotal - price) + " more to your order for a " + next.percent + "% boost.";
+  }
   function makeRef() {
     return "XS-" + Date.now().toString(36).toUpperCase() + "-" + Math.random().toString(36).slice(2, 6).toUpperCase();
   }
@@ -41,11 +50,13 @@
       var products = catalog.products;
       el.innerHTML = products.map(function (p) {
         var ok = p.availability === "in-stock";
+        var note = boostNote(p.price, catalog.boostTiers);
         return '<article class="card">' +
           '<img class="icon" src="' + esc(p.image) + '" alt="" width="48" height="48">' +
           '<h3>' + esc(p.name) + '</h3>' +
           '<div class="price">' + money(p.price) + '</div>' +
           '<p class="muted">' + esc(p.description) + '</p>' +
+          (note ? '<p class="boost-note">' + esc(note) + '</p>' : '') +
           '<button type="button" class="btn btn-block" data-add="' + esc(p.id) + '"' + (ok ? "" : " disabled") + '>' +
           (ok ? "Add to order" : "Unavailable") + '</button></article>';
       }).join("");
