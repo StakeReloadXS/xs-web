@@ -39,12 +39,6 @@
   function renderProducts(el) {
     getCatalog().then(function (catalog) {
       var products = catalog.products;
-      var tierEl = document.querySelector("[data-boost-tiers]");
-      if (tierEl) {
-        tierEl.innerHTML = (catalog.boostTiers || []).map(function (t) {
-          return "<li>" + t.percent + "% at " + money(t.minTotal) + " or more</li>";
-        }).join("");
-      }
       el.innerHTML = products.map(function (p) {
         var ok = p.availability === "in-stock";
         return '<article class="card">' +
